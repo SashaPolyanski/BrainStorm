@@ -3,15 +3,16 @@ import {setNewPasswordTC} from "../../../../main/bll/passwordReducer";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 
+
 const PasswordRecovery = () => {
 
-   // const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const {token} = useParams<{ token: string }>();
 
 
     const [newPassword, setNewPassword] = React.useState<string>('')
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement> ) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewPassword(e.currentTarget.value)
     }
     const onClickHandler = () => {

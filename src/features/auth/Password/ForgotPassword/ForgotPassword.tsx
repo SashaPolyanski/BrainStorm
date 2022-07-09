@@ -27,7 +27,8 @@ const ForgotPassword = () => {
             <button onClick={onClickHandler}>Send Instructions</button>
         </div>
         <p>Did you remember your password?</p>
-        {/*<NavLink to={PATH.FORGOT_PASSWORD}>*/}
+
+        {/*<NavLink to={PATH.CHECK_EMAIL}>*/}
             <p>Try logging in</p>
         {/*</NavLink>*/}
 

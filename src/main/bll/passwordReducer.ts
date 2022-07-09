@@ -23,14 +23,19 @@ const slice = createSlice({
     }
 })
 export const passwordReducer = slice.reducer
+export const {sendEmail, setNewPassword} = slice.actions
 
-export const sendEmailTC = (email: string) =>
-    (dispatch: Dispatch) => {
 
+
+
+export const sendEmailTC = (email: string) => {
+    return async (dispatch: Dispatch) => {
+
+    }
 }
-
-export const setNewPasswordTC = (newPassword: string, token: string | undefined) =>
-    (dispatch: Dispatch) => {
+export const setNewPasswordTC = (newPassword: string, token: string | undefined) => {
+  return async  (dispatch: Dispatch) => {
 
 
     }
+}
