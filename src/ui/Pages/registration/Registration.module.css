@@ -1,0 +1,24 @@
+.formBlock{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+}
+
+.input {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.buttonBlock {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.error {
+  color: red;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 20px;
+}
