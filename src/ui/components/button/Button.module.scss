@@ -1,0 +1,59 @@
+.auth {
+  width: 200px;
+  height: 36px;
+  border-radius: 30px;
+  color: #ECECF9;
+  background-color: #21268F;
+  box-shadow: 0 4px 18px rgba(33, 38, 143, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+.cancel_auth {
+  width: 124px;
+  height: 36px;
+  border-radius: 30px;
+  color: #21268F;
+  background-color: #D7D8EF;
+  cursor: pointer;
+}
+.show_my_pack {
+  background-color: #FFFFFF;
+  width: 96px;
+  color: #2D2E46;
+  text-align: center;
+  height: 36px;
+  cursor: pointer;
+}
+.show_all_pack {
+  background: #9A91C8;
+  color: #FFFFFF;
+  text-align: center;
+  width: 96px;
+  height: 36px;
+  cursor: pointer;
+}
+.delete {
+  padding: 6px;
+  height: 24px;
+  background-color: #F1453D;
+  color: #FFFFFF;
+  border-radius: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.edit_learn {
+ padding: 6px;
+  color: #21268F;
+  background: #D7D8EF;
+  border-radius: 2px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pagination {
+  width: 24px;
+  height: 24px;
+  color: #F2F5F7;
+  background: #21268F;
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+}

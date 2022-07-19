@@ -1,19 +1,15 @@
 import React from 'react';
-import './App.css';
-import ForgotPassword from "./features/auth/Password/ForgotPassword/ForgotPassword";
-import RoutesComponent from "./main/ui/Routes/Routes";
-import PasswordRecovery from "./features/auth/Password/PasswordRecovery/PasswordRecovery";
-import CheckEmail from "./features/auth/Password/CheckEmail/CheckEmail";
 
-function App() {
-    return (
-        <div className="App">
-            {/*<RoutesComponent />*/}
-            <ForgotPassword/>
-            {/*<PasswordRecovery/>*/}
-            {/*<CheckEmail/>*/}
-        </div>
-    );
-}
+import { Route, Routes } from 'react-router-dom';
+
+import Login from './ui/Pages/Login';
+import Registr from './ui/Pages/Reg';
+
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Login />} />
+    <Route path="/login" element={<Registr />} />
+  </Routes>
+);
 
 export default App;
