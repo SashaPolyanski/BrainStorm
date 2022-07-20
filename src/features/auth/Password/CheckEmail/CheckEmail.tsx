@@ -1,20 +1,25 @@
-import React from "react";
-import emailLogo from "../../../../assets/email2.svg"
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../../../main/bll/store";
+import React from 'react';
 
-const CheckEmail = () => {
-    // const email = useSelector<RootStateType, string | null>(state => state.password.email)
+import { useSelector } from 'react-redux';
 
-    return <>
-        <h3>It-Incubator</h3>
-        <img src={emailLogo} alt=""/>
-        <h3>Check Email</h3>
-        <p>
-            We've sent an Email with instructions to
-            {/*<span>{email}</span>*/}
-        </p>
-    </>
-}
+// eslint-disable-next-line import/no-unresolved
+import emailLogo from '../../../../assets/img.png';
+import { RootStateType } from '../../../../main/bll/store';
+import { AuthWrapper } from '../../../../ui/styles/authWrapper/AuthWrapper';
 
-export default CheckEmail
+const CheckEmail = () => (
+  // const email = useSelector<RootStateType, string | null>(state => state.password.email)
+
+  <AuthWrapper>
+    <h3>It-Incubator</h3>
+    <img src={emailLogo} alt="" />
+    <h3>Check Email</h3>
+    <p>
+      {/* eslint-disable-next-line react/no-unescaped-entities */}
+      We've sent an Email with instructions to
+      {/* <span>{email}</span> */}
+    </p>
+  </AuthWrapper>
+);
+
+export default CheckEmail;
