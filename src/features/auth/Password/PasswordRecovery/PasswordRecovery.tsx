@@ -27,14 +27,16 @@ const PasswordRecovery = () => {
         <h3>Create new password</h3>
       </div>
       <div>
-        <Input placeholder="Password" onChange={onChangeHandler} value={newPassword} />
-
+        <Input
+          placeholder="Password"
+          type="password"
+          onChange={onChangeHandler}
+          value={newPassword}
+        />
         <p>Create new password and we will send you further instructions to email</p>
       </div>
       <div>
-        <Button variant="auth" type="submit" onClick={onClickHandler}>
-          Create new password
-        </Button>
+        <Button variant="auth" name=" Create new password" onClick={onClickHandler} />
       </div>
     </AuthWrapper>
   );

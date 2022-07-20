@@ -13,12 +13,14 @@ export const PATH = {
   CHECK_EMAIL: '/check-email',
   SET_NEW_PASSWORD: '/set-new-password',
   REGISTRATION: '/register',
+  LOGIN: '/login',
 };
 
 const RoutesComponent = () => (
   <Routes>
     <Route path={PATH.REGISTRATION} element={<Registr />} />
-    <Route path="/" element={<Login />} />
+    <Route path={PATH.LOGIN} element={<Login />} />
+    <Route path="/login" element={<Login />} />
     <Route path={PATH.FORGOT_PASSWORD} element={<ForgotPassword />} />
     <Route path={`${PATH.SET_NEW_PASSWORD}/:token`} element={<PasswordRecovery />} />
     <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />

@@ -24,13 +24,16 @@ const ForgotPassword = () => {
         <h3>Forgot your password?</h3>
       </div>
       <div>
-        <Input placeholder="Email" value={currentValue} onChange={onChangeHandler} />
+        <Input
+          type="password"
+          placeholder="Email"
+          value={currentValue}
+          onChange={onChangeHandler}
+        />
         <p>Enter your email address and we will send you further instructions</p>
       </div>
       <div>
-        <Button type="submit" onClick={onClickHandler} variant="auth">
-          Send
-        </Button>
+        <Button type="submit" name="Send" onClick={onClickHandler} variant="auth" />
       </div>
       <p>Did you remember your password?</p>
       <NavLink to={PATH.CHECK_EMAIL}>
