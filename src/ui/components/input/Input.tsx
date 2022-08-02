@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  KeyboardEvent,
-  useState,
-} from 'react';
+import React, { DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
 
 import s from './Input.module.scss';
 
@@ -13,42 +7,43 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  onChangeText?: (value: string) => void;
-  onEnter?: () => void;
+  name: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
+  register: Function;
+  label?: string;
+  required?: string | boolean;
+  type: 'text' | 'password' | 'checkbox';
   error?: string;
-  className?: string;
 };
 export const Input = ({
   type,
-  onChange,
-  onChangeText,
+  register,
   onKeyPress,
-  onEnter,
-  error,
+  required,
   className,
-  ...restProps
+  error,
+  name,
+  label,
+  ...rest
 }: SuperInputTextPropsType) => {
-  const [isShown, setIsShow] = useState<boolean>(false);
-  const togglePassword = () => setIsShow(!isShown);
-  const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e);
-
-    onChangeText && onChangeText(e.currentTarget.value);
+  const [isShown, setIsShow] = useState<boolean>(true);
+  const [isShown2, setIsShow2] = useState(type);
+  const togglePassword = () => {
+    setIsShow(!isShown);
+    setIsShow2((type = 'text'));
+    if (isShown2 === 'text') {
+      setIsShow2((type = 'password'));
+    }
   };
-  const finalInputClassName = `${s.input} ${className && s.errorInput}`;
-  const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
-    onKeyPress && onKeyPress(e);
+  const finalInputClassName = `${s.input} ${error && s.errorInput}`;
 
-    onEnter && e.key === 'Enter' && onEnter();
-  };
   return (
     <div className={s.inputWrapper}>
+      <label className={s.label}>{label}</label>
       <input
-        type={type}
-        onChange={onChangeCallback}
-        onKeyPress={onKeyPressCallback}
+        {...register(name, { required })}
+        {...rest}
+        type={isShown2}
         className={finalInputClassName}
-        {...restProps}
       />
       {type === 'password' && (
         // eslint-disable-next-line jsx-a11y/control-has-associated-label

@@ -2,13 +2,20 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import CheckEmail from './features/auth/Password/CheckEmail/CheckEmail';
-import ForgotPassword from './features/auth/Password/ForgotPassword/ForgotPassword';
-import PasswordRecovery from './features/auth/Password/PasswordRecovery/PasswordRecovery';
-import RoutesComponent from './main/ui/Routes/Routes';
-import Login from './ui/Pages/Login';
-import Registr from './ui/Pages/Reg';
+import NavigationBar from './ui/components/navigation/NavigationBar';
+import Login1 from './ui/Pages/login/Login';
+import Profile from './ui/Pages/profile/Profile';
+import { Registration } from './ui/Pages/registration/Registration';
 
-const App = () => <RoutesComponent />;
+const App = () => (
+  <>
+    <NavigationBar />
+    <Routes>
+      <Route path="/" element={<Login1 />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+  </>
+);
 
 export default App;

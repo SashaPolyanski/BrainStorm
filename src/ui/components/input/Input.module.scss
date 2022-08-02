@@ -6,12 +6,11 @@
 
   &:after {
     position: absolute;
-    top: 22px;
+    top: 55px;
     left: 0;
     content: '';
     height: 1px;
     width: 100%;
-    color: red;
     background: #24254A;
     opacity: 0.2;
   }
@@ -38,4 +37,13 @@
 }
 .eyeShow {
   background: url(../../../assets/images/no-view.svg) no-repeat center/contain;
+}
+.label {
+  font-size: 13px;
+  opacity: 0.5;
+  color: #24254A;
+  top: 30px;
+}
+.errorInput {
+  border-bottom: 1px solid red;
 }
