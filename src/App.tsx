@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import Login1 from './ui/Pages/Login1';
-import Registr from './ui/Pages/Reg';
+import { Registration } from './ui/Pages/registration/Registration';
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<Login1 />} />
-    <Route path="/login" element={<Registr />} />
+    <Route path="/" element={<Registration />} />
   </Routes>
 );
 
