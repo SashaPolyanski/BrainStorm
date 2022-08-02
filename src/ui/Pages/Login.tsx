@@ -8,7 +8,9 @@ const Login = () => (
   <AuthWrapper>
     <div>
       <Button variant="auth" name="login" />
-      <Input type="password" />
+      {/* <Input type="password" /> */}
+      {/* <Input type="text" /> */}
+      {/* <Input type="checkbox" /> */}
       <Button variant="cancel_auth" name="cancel" />
       <Button variant="show_my_pack" name="My" />
       <Button variant="show_all_pack" name="All" />

@@ -5,7 +5,9 @@
   align-items: center;
   height: 100%;
 }
-
+.inputBlock {
+  margin-bottom: 84px;
+}
 .input {
   margin-bottom: 20px;
   text-align: left;
@@ -14,11 +16,25 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .error {
   color: red;
-  font-weight: 700;
+  font-size: 13px;
   text-align: left;
-  margin-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
+  height: 20px;
+}
+.title {
+  font-size: 26px;
+  color: #2D2E46;
+  margin-bottom: 32px;
+  margin-top: 25px;
+}
+.subTitle {
+  color: #2D2E46;
+  font-size: 22px;
+  margin-bottom: 40px;
 }
