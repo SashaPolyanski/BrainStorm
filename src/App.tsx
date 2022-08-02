@@ -2,12 +2,20 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
+import NavigationBar from './ui/components/navigation/NavigationBar';
+import Login1 from './ui/Pages/login/Login';
+import Profile from './ui/Pages/profile/Profile';
 import { Registration } from './ui/Pages/registration/Registration';
 
 const App = () => (
-  <Routes>
-    <Route path="/" element={<Registration />} />
-  </Routes>
+  <>
+    <NavigationBar />
+    <Routes>
+      <Route path="/" element={<Login1 />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
+  </>
 );
 
 export default App;

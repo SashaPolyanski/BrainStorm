@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { LoginReducerType } from './loginReducer';
+
 // export const loginThunk = createAsyncThunk('auth/login')
 
 const slice = createSlice({
@@ -12,6 +14,9 @@ const slice = createSlice({
     setError(state, action: PayloadAction<{ error: string }>) {
       state.error = action.payload.error;
     },
+    setIsLogin(state: LoginReducerType, action: PayloadAction<{ value: boolean }>) {
+      state.isLogin = action.payload.value;
+    },
   },
   extraReducers: builder => {},
 });
@@ -21,4 +26,4 @@ type InitialStateType = {
   error: string;
 };
 export const authReducer = slice.reducer;
-export const { setError } = slice.actions;
+export const { setError, setIsLogin } = slice.actions;
