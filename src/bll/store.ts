@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { authReducer } from './authReducer';
+import { passwordReducer } from './passwordReducer';
 import { registrationReducer } from './registrationReducer';
 
 const rootReducer = combineReducers({
   registration: registrationReducer,
   auth: authReducer,
+  register: passwordReducer,
 });
 
 export const store = configureStore({
