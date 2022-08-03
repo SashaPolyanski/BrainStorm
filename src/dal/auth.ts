@@ -16,4 +16,19 @@ export const auth = {
   updateMe(name: string, avatar: string) {
     return instance.put('auth/me', { name, avatar });
   },
+
+  sendEmailAPI(email: string) {
+    return instance.post<any>('auth/forgot', {
+      email,
+      from: 'test-front-admin <ai73a@yandex.by>',
+      message: `<div style="background-color: lime; padding: 15px">
+      password recovery link: 
+      <a href='http://localhost:3000/#/set-new-password/$token$'>
+      link</a>
+      </div>`,
+    });
+  },
+  sendNewPasswordAPI(password: string, resetPasswordToken: string | undefined) {
+    return instance.post<any>('auth/set-new-password', { password, resetPasswordToken });
+  },
 };

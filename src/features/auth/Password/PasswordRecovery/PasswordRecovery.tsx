@@ -17,7 +17,7 @@ export type FormData = {
 const PasswordRecovery = () => {
   const dispatch = useDispatch<any>();
   const pass = useSelector((state: AppRootStateType) => state.register.isNewPassword);
-  console.log(pass);
+  // console.log(pass);
   const { token } = useParams<{ token: string }>();
 
   const { register, handleSubmit, formState, reset } = useForm<FormData>();

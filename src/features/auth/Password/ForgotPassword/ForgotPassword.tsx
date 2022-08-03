@@ -2,8 +2,10 @@ import React, { ChangeEvent } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
+import { sendEmailTC } from '../../../../bll/passwordReducer';
+import { useAppSelector } from '../../../../bll/store';
 import { PATH } from '../../../../main/ui/Routes/Routes';
 import Button from '../../../../ui/components/button/Button';
 import { Input } from '../../../../ui/components/input/Input';
@@ -15,21 +17,17 @@ type FormDataType = {
 
 const ForgotPassword = () => {
   const dispatch = useDispatch<any>();
-  const [currentValue, setCurrentValue] = React.useState('');
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setCurrentValue(e.currentTarget.value);
-  };
-  const onClickHandler = () => {
-    sendEmailTC(currentValue);
-  };
-
   const { register, handleSubmit, formState, reset } = useForm<FormDataType>();
+  const isSend = useAppSelector<boolean>(state => state.register.isSend);
   const onSubmit: SubmitHandler<FormDataType> = email => {
-    dispatch(sendEmailTC(email.email));
+    dispatch(sendEmailTC(email));
     // console.log(data);
     reset();
   };
 
+  if (isSend) {
+    return <Navigate to={PATH.CHECK_EMAIL} />;
+  }
   return (
     <AuthWrapper>
       <div>
@@ -42,7 +40,7 @@ const ForgotPassword = () => {
           <p>Enter your email address and we will send you further instructions</p>
         </div>
         <div>
-          <Button type="submit" name="Send" onClick={onClickHandler} variant="auth" />
+          <Button type="submit" name="SendMail" variant="auth" />
         </div>
       </form>
       <p>Did you remember your password?</p>
@@ -53,6 +51,3 @@ const ForgotPassword = () => {
   );
 };
 export default ForgotPassword;
-function sendEmailTC(currentValue: string) {
-  throw new Error('Function not implemented.');
-}
