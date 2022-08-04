@@ -6,9 +6,9 @@ import { useParams } from 'react-router-dom';
 
 import { setNewPasswordTC } from '../../../../bll/passwordReducer';
 import { AppRootStateType } from '../../../../bll/store';
-import Button from '../../../../ui/components/button/Button';
-import { Input } from '../../../../ui/components/input/Input';
-import { AuthWrapper } from '../../../../ui/styles/authWrapper/AuthWrapper';
+import Button from '../../../components/button/Button';
+import { Input } from '../../../components/input/Input';
+import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 export type FormData = {
   password: string;

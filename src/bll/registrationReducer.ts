@@ -1,11 +1,13 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+
+import { auth } from '../dal/auth';
 
 export const setRegistration = createAsyncThunk(
   'registration/setIsRegistered',
   async (param: { email: string; password: string }, { dispatch, rejectWithValue }) => {
     try {
-      // const response = await api.registration(param.email, param.password);
+      const response = await auth.register(param.email, param.password);
       return { isRegistered: true };
     } catch (err) {
       const error = err as AxiosError;
@@ -26,8 +28,6 @@ const slice = createSlice({
     });
   },
 });
-
-// export const { setIsRegistered } = slice.actions;
 
 export type InitialStateType = {
   isRegistered: boolean;

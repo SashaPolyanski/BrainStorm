@@ -4,8 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { setIsLoginTC } from '../../../bll/loginReducer';
+import { setIsLoginTC } from '../../../bll/authReducer';
 import { AppRootStateType } from '../../../bll/store';
+import { PATH } from '../../../common/constants/constants';
 import { auth } from '../../../dal/auth';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
@@ -18,8 +19,9 @@ export interface IFormInputs {
 }
 
 const Login = () => {
-  const isAuth = useSelector((state: AppRootStateType) => state.auth);
+  const isAuth = useSelector((state: AppRootStateType) => state.auth.isLogin);
   const dispatch = useDispatch<any>();
+  console.log(isAuth);
 
   const {
     register,
@@ -30,14 +32,12 @@ const Login = () => {
     mode: 'onChange',
   });
   const onSubmit = (data: IFormInputs) => {
-    console.log(JSON.stringify(data));
-
     dispatch(setIsLoginTC(data));
     reset();
   };
 
   if (isAuth) {
-    return <Navigate to="Profile" />;
+    return <Navigate to={PATH.PROFILE} />;
   }
 
   return (

@@ -6,10 +6,10 @@ import { Navigate, NavLink } from 'react-router-dom';
 
 import { sendEmailTC } from '../../../../bll/passwordReducer';
 import { useAppSelector } from '../../../../bll/store';
-import { PATH } from '../../../../main/ui/Routes/Routes';
-import Button from '../../../../ui/components/button/Button';
-import { Input } from '../../../../ui/components/input/Input';
-import { AuthWrapper } from '../../../../ui/styles/authWrapper/AuthWrapper';
+import { PATH } from '../../../../common/constants/constants';
+import Button from '../../../components/button/Button';
+import { Input } from '../../../components/input/Input';
+import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 type FormDataType = {
   email: string;
@@ -17,7 +17,7 @@ type FormDataType = {
 
 const ForgotPassword = () => {
   const dispatch = useDispatch<any>();
-  const { register, handleSubmit, formState, reset } = useForm<FormDataType>();
+  const { register, handleSubmit, reset } = useForm<FormDataType>();
   const isSend = useAppSelector<boolean>(state => state.register.isSend);
   const onSubmit: SubmitHandler<FormDataType> = email => {
     dispatch(sendEmailTC(email));

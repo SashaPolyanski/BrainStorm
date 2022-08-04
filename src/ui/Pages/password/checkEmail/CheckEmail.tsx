@@ -1,8 +1,8 @@
 import React from 'react';
 
-import emailLogo from '../../../../assets/img.png';
+import emailLogo from '../../../../assets/images/img.png';
 import { useAppSelector } from '../../../../bll/store';
-import { AuthWrapper } from '../../../../ui/styles/authWrapper/AuthWrapper';
+import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 const CheckEmail = () => {
   const email = useAppSelector<string>(state => state.register.email);

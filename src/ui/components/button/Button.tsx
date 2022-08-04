@@ -7,7 +7,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-type SuperButtonPropsType = DefaultButtonPropsType & {
+type ButtonPropsType = DefaultButtonPropsType & {
   name?: string;
   variant:
     | 'auth'
@@ -19,7 +19,7 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     | 'pagination';
 };
 
-const SuperButton: React.FC<SuperButtonPropsType> = ({
+const Button: React.FC<ButtonPropsType> = ({
   name,
   className,
   disabled,
@@ -49,7 +49,6 @@ const SuperButton: React.FC<SuperButtonPropsType> = ({
     case 'pagination':
       finalClassName = `${s.pagination} ${finalClassName}`;
       break;
-    // no default
   }
   return (
     <div>
@@ -57,7 +56,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = ({
         type="button"
         disabled={!!disabled}
         className={finalClassName}
-        {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
+        {...restProps}
       >
         {name}
       </button>
@@ -65,4 +64,4 @@ const SuperButton: React.FC<SuperButtonPropsType> = ({
   );
 };
 
-export default SuperButton;
+export default Button;
