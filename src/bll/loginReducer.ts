@@ -13,11 +13,14 @@ export type LoginReducerType = {
 export const setIsLoginTC = createAsyncThunk(
   'login/setIsLogin',
   async (data: IFormInputs, thunkAPI) => {
-    const response = await auth.login(data);
     try {
-      thunkAPI.dispatch(setIsLogin({ value: true }));
-    } catch (e) {
-      console.log(e);
+      const response = await auth.login(data);
+      console.log(response);
+      if (response.statusText == 'OK') {
+        thunkAPI.dispatch(setIsLogin({ value: true }));
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
 );
