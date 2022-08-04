@@ -6,4 +6,18 @@ export enum Url {
   UPDATE_ME = '/auth/me',
   GET_PACKS = '/cards/pack',
   GET_USER = '/cards/pack',
+  FORGOT = 'auth/forgot',
+  SET_NEW_PASSWORD = 'auth/set-new-password',
+}
+export enum PATH {
+  LOGIN = '/',
+  REGISTRATION = '/registration',
+  PROFILE = '/profile',
+  SEND_EMAIL = '/send-email',
+  NEW_PASSWORD = '/new-password/:token',
+  CHECK_EMAIL = '/check-email',
+  NOT_FOUND = '/404',
+  EDIT_PROFILE = '/edit-profile',
+  PACKS = '/packs',
+  CARDS = '/cards',
 }

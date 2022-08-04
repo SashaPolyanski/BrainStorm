@@ -17,19 +17,8 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });
 export type AppRootStateType = ReturnType<typeof store.getState>;
-export type AppRootActionsType = Parameters<typeof rootReducer>[1];
 
-export type AppDispatchType = ThunkDispatch<
-  AppRootStateType,
-  unknown,
-  AppRootActionsType
->;
-
-export type AppThunkType<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppRootStateType,
-  unknown,
-  AppRootActionsType
->;
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector;
-export const useAppDispatch: () => AppDispatchType = useDispatch;
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
