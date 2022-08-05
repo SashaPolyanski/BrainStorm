@@ -2,6 +2,7 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { setRegistration } from '../../../bll/registrationReducer';
@@ -20,7 +21,7 @@ type FormDataType = {
 
 export const Registration = () => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const formSchema = Yup.object().shape({
     email: Yup.string()
       .required('Email address is required')
@@ -92,7 +93,14 @@ export const Registration = () => {
           </div>
         </div>
         <div className={s.buttonBlock}>
-          <Button type="button" variant="cancel_auth" name="cancel" />
+          <Button
+            type="button"
+            variant="cancel_auth"
+            name="cancel"
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
           <Button type="submit" variant="auth" name="register" />
         </div>
       </form>
