@@ -9,6 +9,7 @@ import { useAppSelector } from '../../../../bll/store';
 import { PATH } from '../../../../common/constants/constants';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
+import { Title } from '../../../components/title/Title';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 import s from './ForgotPassword.module.scss';
@@ -33,8 +34,7 @@ const ForgotPassword = () => {
   return (
     <AuthWrapper>
       <div>
-        <h2 className={s.title}>It-Incubator</h2>
-        <h2 className={s.subTitle}>Forgot your password?</h2>
+        <Title title="Forgot your password?" />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.input}>
@@ -47,7 +47,7 @@ const ForgotPassword = () => {
       </form>
       <div className={s.infoContainer}>
         <p>Did you remember your password?</p>
-        <NavLink to={PATH.CHECK_EMAIL}>
+        <NavLink to={PATH.LOGIN}>
           <p>Try logging in</p>
         </NavLink>
       </div>
