@@ -20,9 +20,8 @@ export const setNewPasswordTC = createAsyncThunk(
       const response = await auth.sendNewPassword(password, token);
       dispatch(setNewPassword({ isNewPassword: true }));
       dispatch(setIsLoading({ loading: false }));
-      // eslint-disable-next-line no-empty
     } catch (e) {
-      console.log(e);
+      dispatch(setIsLoading({ loading: false }));
     }
   },
 );
@@ -35,9 +34,8 @@ export const sendEmailTC = createAsyncThunk(
       const response = await auth.sendEmail(param.email);
       dispatch(sendEmail({ email: param.email, isSend: true }));
       dispatch(setIsLoading({ loading: false }));
-      // eslint-disable-next-line no-empty
     } catch (e) {
-      console.log(e);
+      dispatch(setIsLoading({ loading: false }));
     }
   },
 );

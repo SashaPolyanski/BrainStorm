@@ -1,15 +1,18 @@
 import React from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
 
-import { selectIsSend } from '../../../../bll/selectors/selectors';
+import { selectIsSend, selectLoading } from '../../../../bll/selectors/selectors';
 import { sendEmailTC } from '../../../../bll/slices/passwordReducer';
 import { useAppDispatch } from '../../../../bll/store';
 import { PATH } from '../../../../common/constants/constants';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
+import Preloader from '../../../components/preloader/Preloader';
 import { Title } from '../../../components/title/Title';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
@@ -21,17 +24,35 @@ type FormDataType = {
 
 const ForgotPassword = () => {
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, reset } = useForm<FormDataType>();
   const isSend = useSelector(selectIsSend);
+  const loading = useSelector(selectLoading);
+
+  const formSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Email address is required')
+      .email('Please enter valid email'),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormDataType>({ mode: 'all', resolver: yupResolver(formSchema) });
+
   const onSubmit: SubmitHandler<FormDataType> = email => {
     dispatch(sendEmailTC(email));
-    // console.log(data);
     reset();
   };
 
   if (isSend) {
     return <Navigate to={PATH.CHECK_EMAIL} />;
   }
+
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <AuthWrapper>
       <div>
@@ -39,7 +60,15 @@ const ForgotPassword = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.input}>
-          <Input type="text" register={register} name="email" label="Email" />
+          <Input
+            name="email"
+            register={register}
+            type="text"
+            label="Email"
+            required
+            error={errors.email?.message}
+          />
+          <div className={s.error}>{errors.email && errors.email.message}</div>
         </div>
         <div className={s.textContainer}>
           <p>Enter your email address and we will send you further instructions</p>
