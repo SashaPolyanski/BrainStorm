@@ -35,13 +35,12 @@ export const Registration = () => {
       .oneOf([Yup.ref('password')], 'Passwords does not match'),
   });
 
-  // const formOptions = { resolver: yupResolver(formSchema) }
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormDataType>({ mode: 'onBlur', resolver: yupResolver(formSchema) });
+  } = useForm<FormDataType>({ mode: 'all', resolver: yupResolver(formSchema) });
 
   const onSubmit: SubmitHandler<FormDataType> = data => {
     console.log(data);

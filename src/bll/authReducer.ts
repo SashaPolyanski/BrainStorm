@@ -3,14 +3,19 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { auth } from '../dal/auth';
 import { IFormInputs } from '../ui/Pages/login/Login';
 
+import { setIsLoading } from './appReducer';
+
 export const setIsLoginTC = createAsyncThunk(
   'login/setIsLogin',
   async (data: IFormInputs, { dispatch }) => {
-    const response = await auth.login(data);
     try {
+      dispatch(setIsLoading({ loading: true }));
+      const response = await auth.login(data);
       dispatch(setIsLogin({ value: true }));
+      dispatch(setIsLoading({ loading: false }));
     } catch (e) {
       console.log(e);
+      dispatch(setIsLoading({ loading: false }));
     }
   },
 );
