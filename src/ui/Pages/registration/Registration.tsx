@@ -9,6 +9,7 @@ import { setRegistration } from '../../../bll/registrationReducer';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
 import s from './Registration.module.scss';
@@ -52,8 +53,7 @@ export const Registration = () => {
   // }
   return (
     <AuthWrapper>
-      <h2 className={s.title}>it-incubator</h2>
-      <h2 className={s.subTitle}>Sign Up</h2>
+      <Title title="Sign Up" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.inputBlock}>
           <div className={s.input}>

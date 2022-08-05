@@ -9,6 +9,7 @@ import { AppRootStateType } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
 import s from './Login.module.scss';
@@ -42,8 +43,7 @@ const Login = () => {
   return (
     <AuthWrapper>
       <div>
-        <h2 className={s.title}>BrainStorm</h2>
-        <h2 className={s.subTitle}>Sign in</h2>
+        <Title title="Sign in" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.input}>
             <Input type="text" label="Email" register={register} name="email" required />
