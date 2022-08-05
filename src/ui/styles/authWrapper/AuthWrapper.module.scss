@@ -5,13 +5,13 @@
   min-height: 95vh;
   &__container {
     width: 413px;
-    height: 600px;
+    min-height: 600px;
     background: #F9F9FE;
     border-radius: 8px;
     text-align: center;
     @media screen and (max-width: 600px) {
       width: 320px;
+      min-height: 500px;
     }
   }
-
 }
