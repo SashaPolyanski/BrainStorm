@@ -26,10 +26,10 @@ export const Registration = () => {
       .required('Email address is required')
       .email('Please enter valid email'),
     password: Yup.string()
-      .required('Password is required')
-      .min(3, 'Password must be at 3 char long'),
+      .required('password is required')
+      .min(3, 'password must be at 3 char long'),
     confirmPassword: Yup.string()
-      .required('Password is required')
+      .required('password is required')
       .oneOf([Yup.ref('password')], 'Passwords does not match'),
   });
 

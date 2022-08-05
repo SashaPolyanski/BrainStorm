@@ -3,11 +3,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { authReducer } from './authReducer';
+import { passwordReducer } from './passwordReducer';
 import { registrationReducer } from './registrationReducer';
 
 const rootReducer = combineReducers({
   registration: registrationReducer,
   auth: authReducer,
+  register: passwordReducer,
 });
 
 export const store = configureStore({
@@ -15,19 +17,8 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });
 export type AppRootStateType = ReturnType<typeof store.getState>;
-export type AppRootActionsType = Parameters<typeof rootReducer>[1];
 
-export type AppDispatchType = ThunkDispatch<
-  AppRootStateType,
-  unknown,
-  AppRootActionsType
->;
-
-export type AppThunkType<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppRootStateType,
-  unknown,
-  AppRootActionsType
->;
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector;
-export const useAppDispatch: () => AppDispatchType = useDispatch;
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;

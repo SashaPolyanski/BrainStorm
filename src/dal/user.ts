@@ -1,7 +1,9 @@
+import { Url } from '../common/constants/constants';
+
 import { instance } from './settings';
 
-export const user = {
-  getUser(userId: any) {
-    return instance.get('/cards/pack', {});
+export const getUser = {
+  getUser(userId: string) {
+    return instance.get(Url.GET_USER, {});
   },
 };

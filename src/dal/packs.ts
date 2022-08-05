@@ -1,7 +1,9 @@
+import { Url } from '../common/constants/constants';
+
 import { instance } from './settings';
 
-export const packs = {
+export const fetchPacks = {
   getPacks(params: any) {
-    return instance.get('/cards/pack', { params: { ...params } });
+    return instance.get(Url.GET_PACKS, { params: { ...params } });
   },
 };
