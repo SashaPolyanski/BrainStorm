@@ -2,6 +2,7 @@
   "name": "brainstorm",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sashapolyanski.github.io/BrainStorm/",
   "dependencies": {
     "@hookform/resolvers": "^2.9.6",
     "@reduxjs/toolkit": "^1.8.3",
