@@ -16,6 +16,9 @@
   margin-left: 200px;
   text-decoration: none;
   color: #2D2E46;
+  @media screen and (max-width: 600px) {
+    margin: 0 auto 20px auto;
+  }
 }
 
 .textContainer {
