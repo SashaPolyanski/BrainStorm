@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setNewPasswordTC } from '../../../../bll/passwordReducer';
+import { setNewPasswordTC } from '../../../../bll/slices/passwordReducer';
 import { AppRootStateType } from '../../../../bll/store';
 import Button from '../../../../ui/components/button/Button';
 import { Input } from '../../../../ui/components/input/Input';
@@ -16,7 +16,7 @@ export type FormData = {
 
 const PasswordRecovery = () => {
   const dispatch = useDispatch<any>();
-  const pass = useSelector((state: AppRootStateType) => state.register.isNewPassword);
+  const pass = useSelector((state: AppRootStateType) => state.registration.isRegistered);
   // console.log(pass);
   const { token } = useParams<{ token: string }>();
 
