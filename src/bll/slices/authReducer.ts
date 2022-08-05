@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { auth } from '../dal/auth';
-import { IFormInputs } from '../ui/Pages/login/Login';
+import { auth } from '../../dal/auth';
+import { IFormInputs } from '../../ui/Pages/login/Login';
 
 import { setIsLoading } from './appReducer';
 

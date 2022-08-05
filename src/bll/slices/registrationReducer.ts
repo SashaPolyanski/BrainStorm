@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { auth } from '../dal/auth';
+import { auth } from '../../dal/auth';
 
 export const setRegistration = createAsyncThunk(
   'registration/setIsRegistered',

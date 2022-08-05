@@ -1,13 +1,15 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import emailLogo from '../../../../assets/images/img.png';
-import { useAppSelector } from '../../../../bll/store';
+import { selectEmail } from '../../../../bll/selectors/selectors';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 import s from './CheckEmail.module.scss';
 
 const CheckEmail = () => {
-  const email = useAppSelector<string>(state => state.register.email);
+  const email = useSelector(selectEmail);
   return (
     <AuthWrapper>
       <div>
