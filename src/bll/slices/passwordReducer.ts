@@ -3,6 +3,8 @@ import { AxiosResponse } from 'axios';
 
 import { auth } from '../../dal/auth';
 
+import { setIsLoading } from './appReducer';
+
 type initialType = {
   email: string;
   isSend: boolean;
@@ -14,10 +16,14 @@ export const setNewPasswordTC = createAsyncThunk(
   async (param: { password: string; token?: string }, { dispatch }) => {
     const { password, token } = param;
     try {
+      dispatch(setIsLoading({ loading: true }));
       const response = await auth.sendNewPassword(password, token);
       dispatch(setNewPassword({ isNewPassword: true }));
+      dispatch(setIsLoading({ loading: false }));
       // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   },
 );
 
@@ -25,10 +31,14 @@ export const sendEmailTC = createAsyncThunk(
   'email/setEmail',
   async (param: { email: string }, { dispatch }) => {
     try {
+      dispatch(setIsLoading({ loading: true }));
       const response = await auth.sendEmail(param.email);
       dispatch(sendEmail({ email: param.email, isSend: true }));
+      dispatch(setIsLoading({ loading: false }));
       // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   },
 );
 
