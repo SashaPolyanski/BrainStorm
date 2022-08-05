@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { setNewPasswordTC } from '../../../../bll/passwordReducer';
+import { setNewPasswordTC } from '../../../../bll/slices/passwordReducer';
 import { useAppDispatch } from '../../../../bll/store';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';

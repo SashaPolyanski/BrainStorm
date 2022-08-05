@@ -2,11 +2,12 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { setIsLoginTC } from '../../../bll/authReducer';
+import { selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
+import { setIsLoginTC } from '../../../bll/slices/authReducer';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
@@ -23,8 +24,8 @@ export interface IFormInputs {
 }
 
 const Login = () => {
-  const isAuth = useSelector((state: AppRootStateType) => state.auth.isLogin);
-  const loading = useSelector((state: AppRootStateType) => state.app.isLoading);
+  const isAuth = useSelector(selectIsAuth);
+  const loading = useSelector(selectLoading);
   const dispatch = useAppDispatch();
   const formSchema = Yup.object().shape({
     email: Yup.string()

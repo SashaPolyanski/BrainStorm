@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 
-import { sendEmailTC } from '../../../../bll/passwordReducer';
-import { useAppSelector } from '../../../../bll/store';
+import { selectIsSend } from '../../../../bll/selectors/selectors';
+import { sendEmailTC } from '../../../../bll/slices/passwordReducer';
+import { useAppDispatch } from '../../../../bll/store';
 import { PATH } from '../../../../common/constants/constants';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
@@ -19,9 +20,9 @@ type FormDataType = {
 };
 
 const ForgotPassword = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<FormDataType>();
-  const isSend = useAppSelector<boolean>(state => state.register.isSend);
+  const isSend = useSelector(selectIsSend);
   const onSubmit: SubmitHandler<FormDataType> = email => {
     dispatch(sendEmailTC(email));
     // console.log(data);

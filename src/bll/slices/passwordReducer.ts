@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 
-import { auth } from '../dal/auth';
+import { auth } from '../../dal/auth';
 
 type initialType = {
   email: string;

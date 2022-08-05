@@ -2,16 +2,16 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
-import { appReducer } from './appReducer';
-import { authReducer } from './authReducer';
-import { passwordReducer } from './passwordReducer';
-import { registrationReducer } from './registrationReducer';
+import { appReducer } from './slices/appReducer';
+import { authReducer } from './slices/authReducer';
+import { passwordReducer } from './slices/passwordReducer';
+import { registrationReducer } from './slices/registrationReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   app: appReducer,
   registration: registrationReducer,
-  register: passwordReducer,
+  restorePassword: passwordReducer,
 });
 
 export const store = configureStore({
