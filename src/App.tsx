@@ -17,7 +17,7 @@ const App = () => (
     <Routes>
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
-      <Route path={PATH.PROFILE} element={<Profile />} />
+      {/* <Route path={PATH.PROFILE} element={<Profile />} /> */}
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.NEW_PASSWORD} element={<PasswordRecovery />} />
       <Route path={PATH.SEND_EMAIL} element={<ForgotPassword />} />

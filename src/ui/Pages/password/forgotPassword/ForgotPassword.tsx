@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,8 @@ import { PATH } from '../../../../common/constants/constants';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
+
+import s from './ForgotPassword.module.scss';
 
 type FormDataType = {
   email: string;
@@ -31,22 +33,24 @@ const ForgotPassword = () => {
   return (
     <AuthWrapper>
       <div>
-        <h3>It-Incubator</h3>
-        <h3>Forgot your password?</h3>
+        <h2 className={s.title}>It-Incubator</h2>
+        <h2 className={s.subTitle}>Forgot your password?</h2>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Input type="text" register={register} label="email" name="email" />
+        <div className={s.input}>
+          <Input type="text" register={register} name="email" label="Email" />
+        </div>
+        <div className={s.textContainer}>
           <p>Enter your email address and we will send you further instructions</p>
         </div>
-        <div>
-          <Button type="submit" name="SendMail" variant="auth" />
-        </div>
+        <Button type="submit" name="Send Instructions" variant="auth" />
       </form>
-      <p>Did you remember your password?</p>
-      <NavLink to={PATH.CHECK_EMAIL}>
-        <p>Try logging in</p>
-      </NavLink>
+      <div className={s.infoContainer}>
+        <p>Did you remember your password?</p>
+        <NavLink to={PATH.CHECK_EMAIL}>
+          <p>Try logging in</p>
+        </NavLink>
+      </div>
     </AuthWrapper>
   );
 };
