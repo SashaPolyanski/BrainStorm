@@ -2,22 +2,21 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import { PATH } from '../../../common/constants/constants';
+
 import s from './navigationBar.module.scss';
 
 const NavigationBar = () => (
   <nav className={s.nav}>
     <ul>
       <li>
-        <NavLink to="login">Login</NavLink>
+        <NavLink to={PATH.LOGIN}>Login</NavLink>
       </li>
       <li>
-        <NavLink to="registration">Registration</NavLink>
+        <NavLink to={PATH.REGISTRATION}>Registration</NavLink>
       </li>
       <li>
-        <NavLink to="profile">Profile</NavLink>
-      </li>
-      <li>
-        <NavLink to="logout">Logout</NavLink>
+        <NavLink to={PATH.PROFILE}>Profile</NavLink>
       </li>
     </ul>
   </nav>

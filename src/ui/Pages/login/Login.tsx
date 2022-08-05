@@ -2,36 +2,35 @@ import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
-import { setIsLoginTC } from '../../../bll/loginReducer';
+import { setIsLoginTC } from '../../../bll/authReducer';
 import { AppRootStateType } from '../../../bll/store';
-import { auth } from '../../../dal/auth';
+import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
+import s from './Login.module.scss';
+
 export interface IFormInputs {
   email: string;
   password: number;
-  rememberMe: boolean;
 }
 
 const Login = () => {
-  const isAuth = useSelector((state: AppRootStateType) => state.auth);
+  const isAuth = useSelector((state: AppRootStateType) => state.auth.isLogin);
   const dispatch = useDispatch<any>();
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     reset,
   } = useForm<IFormInputs>({
     mode: 'onChange',
   });
   const onSubmit = (data: IFormInputs) => {
-    console.log(JSON.stringify(data));
-
     dispatch(setIsLoginTC(data));
     reset();
   };
@@ -42,34 +41,35 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <div className={s.login__wrapper}>
-        <h3>It-incubator</h3>
-        <h5>Sign in</h5>
+      <div>
+        <h2 className={s.title}>BrainStorm</h2>
+        <h2 className={s.subTitle}>Sign in</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input type="text" label="email" register={register} name="email" required />
-          <div style={{ height: '50px', color: 'red' }}>
-            {errors?.email && <p>{errors?.email.message || 'Error!'}</p>}
+          <div className={s.input}>
+            <Input type="text" label="Email" register={register} name="email" required />
+            <div className={s.error}>{errors.email && errors.email.message}</div>
           </div>
-          <Input
-            type="password"
-            label="password"
-            register={register}
-            name="password"
-            required
-          />
-          <div style={{ height: '50px', color: 'red' }}>
-            {errors?.password && <p>{errors?.password.message || 'Error!'} </p>}
+          <div className={s.input}>
+            <Input
+              type="password"
+              label="Password"
+              register={register}
+              name="password"
+              required
+            />
+            <div className={s.error}>{errors.email && errors.email.message}</div>
           </div>
-          <Input
-            type="checkbox"
-            label="Remember me"
-            register={register}
-            name="rememberMe"
-          />
+          <NavLink to={PATH.SEND_EMAIL} className={s.forgot}>
+            Forgot Password
+          </NavLink>
           <Button type="submit" name="Login" variant="auth" />
         </form>
-        <p>Do not have an account?</p>
-        <NavLink to="registration">Sign up</NavLink>
+        <div className={s.textContainer}>
+          <p className={s.text}>Do not have an account?</p>
+          <NavLink className={s.signUp} to={PATH.REGISTRATION}>
+            Sign up
+          </NavLink>
+        </div>
       </div>
     </AuthWrapper>
   );
