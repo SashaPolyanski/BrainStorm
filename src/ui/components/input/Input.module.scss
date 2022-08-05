@@ -27,7 +27,7 @@
   height: 18px;
   width: 18px;
   right: 1px;
-  top: 50%;
+  top: 70%;
   border: none;
   transform: translateY(-50%);
   background: url(../../../assets/images/view.svg) no-repeat center/contain;
@@ -46,4 +46,7 @@
 }
 .errorInput {
   border-bottom: 1px solid red;
+}
+.labelCheckbox {
+  opacity: 1;
 }

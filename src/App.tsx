@@ -2,11 +2,12 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import CheckEmail from './features/auth/Password/CheckEmail/CheckEmail';
-import ForgotPassword from './features/auth/Password/ForgotPassword/ForgotPassword';
-import PasswordRecovery from './features/auth/Password/PasswordRecovery/PasswordRecovery';
+import { PATH } from './common/constants/constants';
 import NavigationBar from './ui/components/navigation/NavigationBar';
-import Login1 from './ui/Pages/login/Login';
+import Login from './ui/Pages/login/Login';
+import CheckEmail from './ui/Pages/password/checkEmail/CheckEmail';
+import ForgotPassword from './ui/Pages/password/forgotPassword/ForgotPassword';
+import PasswordRecovery from './ui/Pages/password/passwordRecovery/PasswordRecovery';
 import Profile from './ui/Pages/profile/Profile';
 import { Registration } from './ui/Pages/registration/Registration';
 
@@ -14,12 +15,12 @@ const App = () => (
   <>
     <NavigationBar />
     <Routes>
-      <Route path="/" element={<Login1 />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/check-email" element={<CheckEmail />} />
-      <Route path="/set-new-password" element={<PasswordRecovery />} />
-      <Route path="/forgot" element={<ForgotPassword />} />
+      <Route path={PATH.LOGIN} element={<Login />} />
+      <Route path={PATH.REGISTRATION} element={<Registration />} />
+      {/* <Route path={PATH.PROFILE} element={<Profile />} /> */}
+      <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
+      <Route path={PATH.NEW_PASSWORD} element={<PasswordRecovery />} />
+      <Route path={PATH.SEND_EMAIL} element={<ForgotPassword />} />
     </Routes>
   </>
 );

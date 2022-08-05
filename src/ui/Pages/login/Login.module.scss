@@ -1,0 +1,38 @@
+.input {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.error {
+  color: red;
+  font-size: 13px;
+  text-align: left;
+  width: 80%;
+  margin: 0 auto;
+  height: 20px;
+}
+.forgot {
+  display: block;
+  margin-bottom: 80px;
+  margin-left: 200px;
+  text-decoration: none;
+  color: #2D2E46;
+  @media screen and (max-width: 600px) {
+    margin: 0 auto 20px auto;
+  }
+}
+
+.textContainer {
+  margin-top: 20px;
+  .text {
+    opacity: 0.5;
+    color: #2D2E46;
+    margin-bottom: 10px;
+  }
+  .signUp {
+    display: block;
+    margin-bottom: 30px;
+    color: #21268F;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}

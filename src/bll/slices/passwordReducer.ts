@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 
-import { auth } from '../dal/auth';
+import { auth } from '../../dal/auth';
 
 type initialType = {
   email: string;
@@ -14,7 +14,7 @@ export const setNewPasswordTC = createAsyncThunk(
   async (param: { password: string; token?: string }, { dispatch }) => {
     const { password, token } = param;
     try {
-      const response = await auth.sendNewPasswordAPI(password, token);
+      const response = await auth.sendNewPassword(password, token);
       dispatch(setNewPassword({ isNewPassword: true }));
       // eslint-disable-next-line no-empty
     } catch (e) {}
@@ -25,7 +25,7 @@ export const sendEmailTC = createAsyncThunk(
   'email/setEmail',
   async (param: { email: string }, { dispatch }) => {
     try {
-      const response = await auth.sendEmailAPI(param.email);
+      const response = await auth.sendEmail(param.email);
       dispatch(sendEmail({ email: param.email, isSend: true }));
       // eslint-disable-next-line no-empty
     } catch (e) {}

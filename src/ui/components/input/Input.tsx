@@ -35,7 +35,6 @@ export const Input = ({
     }
   };
   const finalInputClassName = `${s.input} ${error && s.errorInput}`;
-
   return (
     <div className={s.inputWrapper}>
       <label className={s.label}>{label}</label>

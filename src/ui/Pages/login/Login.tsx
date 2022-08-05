@@ -1,74 +1,100 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
 
-import { setIsLoginTC } from '../../../bll/loginReducer';
-import { AppRootStateType } from '../../../bll/store';
-import { auth } from '../../../dal/auth';
+import { selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
+import { setIsLoginTC } from '../../../bll/slices/authReducer';
+import { AppRootStateType, useAppDispatch } from '../../../bll/store';
+import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import Preloader from '../../components/preloader/Preloader';
+import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
+
+import s from './Login.module.scss';
 
 export interface IFormInputs {
   email: string;
   password: number;
-  rememberMe: boolean;
 }
 
 const Login = () => {
-  const isAuth = useSelector((state: AppRootStateType) => state.auth);
-  const dispatch = useDispatch<any>();
-
+  const isAuth = useSelector(selectIsAuth);
+  const loading = useSelector(selectLoading);
+  const dispatch = useAppDispatch();
+  const formSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Email address is required')
+      .email('Please enter valid email'),
+    password: Yup.string()
+      .required('password is required')
+      .min(3, 'password must be at 3 char long'),
+  });
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     reset,
   } = useForm<IFormInputs>({
-    mode: 'onChange',
+    mode: 'all',
+    resolver: yupResolver(formSchema),
   });
   const onSubmit = (data: IFormInputs) => {
-    console.log(JSON.stringify(data));
-
     dispatch(setIsLoginTC(data));
     reset();
   };
 
   if (isAuth) {
-    return <Navigate to="Profile" />;
+    return <Navigate to={PATH.PROFILE} />;
   }
-
+  if (loading) {
+    return <Preloader />;
+  }
   return (
-    <div>
-      <AuthWrapper>
-        <div>IT-INCUBATOR</div>
+    <AuthWrapper>
+      <div>
+        <Title title="Sign in" />
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input type="text" label="email" register={register} name="email" required />
-          <div style={{ height: '50px', color: 'red' }}>
-            {errors?.email && <p>{errors?.email.message || 'Error!'}</p>}
+          <div className={s.input}>
+            <Input
+              type="text"
+              label="Email"
+              register={register}
+              error={errors.email?.message}
+              name="email"
+              required
+            />
+            <div className={s.error}>{errors.email && errors.email.message}</div>
           </div>
-          <Input
-            type="password"
-            label="password"
-            register={register}
-            name="password"
-            required
-          />
-          <div style={{ height: '50px', color: 'red' }}>
-            {errors?.password && <p>{errors?.password.message || 'Error!'} </p>}
+          <div className={s.input}>
+            <Input
+              type="password"
+              label="Password"
+              register={register}
+              error={errors.password?.message}
+              name="password"
+              required
+            />
+            <div className={s.error}>{errors.password && errors.password.message}</div>
           </div>
-          <Input
-            type="checkbox"
-            label="Remember me"
-            register={register}
-            name="rememberMe"
-          />
-          <Button type="submit" name="Отправить" variant="auth" />
+          <NavLink to={PATH.SEND_EMAIL} className={s.forgot}>
+            Forgot Password
+          </NavLink>
+          <Button type="submit" name="Login" variant="auth" />
         </form>
-      </AuthWrapper>
-    </div>
+        <div className={s.textContainer}>
+          <p className={s.text}>Do not have an account?</p>
+          <NavLink className={s.signUp} to={PATH.REGISTRATION}>
+            Sign up
+          </NavLink>
+        </div>
+      </div>
+    </AuthWrapper>
   );
 };
 

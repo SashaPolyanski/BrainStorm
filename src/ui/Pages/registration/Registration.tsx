@@ -2,12 +2,14 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { setRegistration } from '../../../bll/registrationReducer';
+import { setRegistration } from '../../../bll/slices/registrationReducer';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
 import s from './Registration.module.scss';
@@ -20,26 +22,25 @@ type FormDataType = {
 
 export const Registration = () => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const formSchema = Yup.object().shape({
     email: Yup.string()
       .required('Email address is required')
       .email('Please enter valid email'),
     password: Yup.string()
-      .required('Password is required')
-      .min(3, 'Password must be at 3 char long'),
+      .required('password is required')
+      .min(3, 'password must be at 3 char long'),
     confirmPassword: Yup.string()
-      .required('Password is required')
+      .required('password is required')
       .oneOf([Yup.ref('password')], 'Passwords does not match'),
   });
 
-  // const formOptions = { resolver: yupResolver(formSchema) }
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormDataType>({ mode: 'onBlur', resolver: yupResolver(formSchema) });
+  } = useForm<FormDataType>({ mode: 'all', resolver: yupResolver(formSchema) });
 
   const onSubmit: SubmitHandler<FormDataType> = data => {
     console.log(data);
@@ -51,8 +52,7 @@ export const Registration = () => {
   // }
   return (
     <AuthWrapper>
-      <h2 className={s.title}>it-incubator</h2>
-      <h2 className={s.subTitle}>Sign Up</h2>
+      <Title title="Sign Up" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.inputBlock}>
           <div className={s.input}>
@@ -92,7 +92,14 @@ export const Registration = () => {
           </div>
         </div>
         <div className={s.buttonBlock}>
-          <Button type="button" variant="cancel_auth" name="cancel" />
+          <Button
+            type="button"
+            variant="cancel_auth"
+            name="cancel"
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
           <Button type="submit" variant="auth" name="register" />
         </div>
       </form>

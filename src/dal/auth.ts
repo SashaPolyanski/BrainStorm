@@ -1,34 +1,36 @@
+import { Url } from '../common/constants/constants';
+import { ResponseLoginType } from '../common/types/ResponseTypes';
+
 import { instance } from './settings';
 
 export const auth = {
   login(data: any) {
-    return instance.post<any>('/auth/login', data);
+    return instance.post<ResponseLoginType>(Url.LOGIN, data);
   },
   logout() {
-    return instance.delete('/auth/me');
+    return instance.delete(Url.LOGOUT);
   },
   me() {
-    return instance.post<any>('/auth/me');
+    return instance.post<ResponseLoginType>(Url.AUTH_ME);
   },
   register(email: string, password: string) {
-    return instance.post<any>('/auth/register', { email, password });
+    return instance.post(Url.REGISTER, { email, password });
   },
-  updateMe(name: string, avatar: string) {
-    return instance.put('auth/me', { name, avatar });
+  updateMe(name?: string, avatar?: string) {
+    return instance.put<ResponseLoginType>(Url.UPDATE_ME, { name, avatar });
   },
-
-  sendEmailAPI(email: string) {
-    return instance.post<any>('auth/forgot', {
+  sendEmail(email: string) {
+    return instance.post(Url.FORGOT, {
       email,
       from: 'test-front-admin <ai73a@yandex.by>',
       message: `<div style="background-color: lime; padding: 15px">
       password recovery link: 
-      <a href='http://localhost:3000/#/set-new-password/$token$'>
+      <a href='http://localhost:3000/#/new-password/$token$'>
       link</a>
       </div>`,
     });
   },
-  sendNewPasswordAPI(password: string, resetPasswordToken: string | undefined) {
-    return instance.post<any>('auth/set-new-password', { password, resetPasswordToken });
+  sendNewPassword(password: string, token: string | undefined) {
+    return instance.post(Url.SET_NEW_PASSWORD, { password, token });
   },
 };

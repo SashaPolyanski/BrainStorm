@@ -2,11 +2,10 @@ import React, { ChangeEvent } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { setNewPasswordTC } from '../../../../bll/passwordReducer';
-import { AppRootStateType, useAppSelector } from '../../../../bll/store';
-import { PATH } from '../../../../main/ui/Routes/Routes';
+import { AppRootStateType } from '../../../../bll/store';
 import Button from '../../../../ui/components/button/Button';
 import { Input } from '../../../../ui/components/input/Input';
 import { AuthWrapper } from '../../../../ui/styles/authWrapper/AuthWrapper';
@@ -17,7 +16,7 @@ export type FormData = {
 
 const PasswordRecovery = () => {
   const dispatch = useDispatch<any>();
-  const pass = useAppSelector<boolean>(state => state.register.isNewPassword);
+  const pass = useSelector((state: AppRootStateType) => state.register.isNewPassword);
   // console.log(pass);
   const { token } = useParams<{ token: string }>();
 
@@ -27,10 +26,6 @@ const PasswordRecovery = () => {
     reset();
   };
 
-  if (pass) {
-    return <Navigate to={PATH.LOGIN} />;
-  }
-
   return (
     <AuthWrapper>
       <div>
@@ -39,7 +34,7 @@ const PasswordRecovery = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <Input type="password" register={register} label="password" name="password" />
+          <Input type="password" register={register} label="email" name="password" />
           <p>Create new password and we will send you further instructions to email</p>
         </div>
         <div>
