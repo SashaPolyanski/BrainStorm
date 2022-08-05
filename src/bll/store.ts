@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 
 import { authReducer } from './authReducer';
 import { passwordReducer } from './passwordReducer';
