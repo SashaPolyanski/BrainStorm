@@ -1,26 +1,26 @@
 import React, { ChangeEvent } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { setNewPasswordTC } from '../../../../bll/passwordReducer';
-import { AppRootStateType } from '../../../../bll/store';
+import { useAppDispatch } from '../../../../bll/store';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
+import { Title } from '../../../components/title/Title';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
+
+import s from './PasswordRecovery.module.scss';
 
 export type FormData = {
   password: string;
 };
 
 const PasswordRecovery = () => {
-  const dispatch = useDispatch<any>();
-  const pass = useSelector((state: AppRootStateType) => state.register.isNewPassword);
-  // console.log(pass);
+  const dispatch = useAppDispatch();
   const { token } = useParams<{ token: string }>();
 
-  const { register, handleSubmit, formState, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
   const onSubmit: SubmitHandler<FormData> = password => {
     dispatch(setNewPasswordTC({ password: password.password, token }));
     reset();
@@ -28,16 +28,20 @@ const PasswordRecovery = () => {
 
   return (
     <AuthWrapper>
-      <div>
-        <h3>It-Incubator</h3>
-        <h3>Create new password</h3>
-      </div>
+      <Title title="Create new password" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Input type="password" register={register} label="email" name="password" />
-          <p>Create new password and we will send you further instructions to email</p>
+        <div className={s.input}>
+          <Input
+            type="password"
+            register={register}
+            label="New Password"
+            name="password"
+          />
+          <p className={s.description}>
+            Create new password and we will send you further instructions to email
+          </p>
         </div>
-        <div>
+        <div className={s.buttonContainer}>
           <Button variant="auth" name=" Create new password" type="submit" />
         </div>
       </form>
