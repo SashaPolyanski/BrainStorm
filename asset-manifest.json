@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.da03bbd7.css",
-    "main.js": "/static/js/main.e3ca06de.js",
-    "index.html": "/index.html",
-    "static/media/no-view.svg": "/static/media/no-view.ef3570e6475960ea172b.svg",
-    "static/media/view.svg": "/static/media/view.bc05a0cb437d19c6e4d9.svg",
-    "main.da03bbd7.css.map": "/static/css/main.da03bbd7.css.map",
-    "main.e3ca06de.js.map": "/static/js/main.e3ca06de.js.map"
+    "main.css": "/BrainStorm/static/css/main.46898162.css",
+    "main.js": "/BrainStorm/static/js/main.f5364e9b.js",
+    "index.html": "/BrainStorm/index.html",
+    "static/media/no-view.svg": "/BrainStorm/static/media/no-view.ef3570e6475960ea172b.svg",
+    "static/media/view.svg": "/BrainStorm/static/media/view.bc05a0cb437d19c6e4d9.svg",
+    "main.46898162.css.map": "/BrainStorm/static/css/main.46898162.css.map",
+    "main.f5364e9b.js.map": "/BrainStorm/static/js/main.f5364e9b.js.map"
   },
   "entrypoints": [
-    "static/css/main.da03bbd7.css",
-    "static/js/main.e3ca06de.js"
+    "static/css/main.46898162.css",
+    "static/js/main.f5364e9b.js"
   ]
 }
