@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/BrainStorm/static/css/main.46898162.css",
-    "main.js": "/BrainStorm/static/js/main.f5364e9b.js",
+    "main.css": "/BrainStorm/static/css/main.e9762b4e.css",
+    "main.js": "/BrainStorm/static/js/main.09d65c83.js",
     "index.html": "/BrainStorm/index.html",
     "static/media/no-view.svg": "/BrainStorm/static/media/no-view.ef3570e6475960ea172b.svg",
     "static/media/view.svg": "/BrainStorm/static/media/view.bc05a0cb437d19c6e4d9.svg",
-    "main.46898162.css.map": "/BrainStorm/static/css/main.46898162.css.map",
-    "main.f5364e9b.js.map": "/BrainStorm/static/js/main.f5364e9b.js.map"
+    "main.e9762b4e.css.map": "/BrainStorm/static/css/main.e9762b4e.css.map",
+    "main.09d65c83.js.map": "/BrainStorm/static/js/main.09d65c83.js.map"
   },
   "entrypoints": [
-    "static/css/main.46898162.css",
-    "static/js/main.f5364e9b.js"
+    "static/css/main.e9762b4e.css",
+    "static/js/main.09d65c83.js"
   ]
 }
