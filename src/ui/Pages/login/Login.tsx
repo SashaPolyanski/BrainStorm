@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import { setIsLoginTC } from '../../../bll/authReducer';
-import { AppRootStateType } from '../../../bll/store';
+import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import Preloader from '../../components/preloader/Preloader';
 import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
@@ -21,15 +24,24 @@ export interface IFormInputs {
 
 const Login = () => {
   const isAuth = useSelector((state: AppRootStateType) => state.auth.isLogin);
-  const dispatch = useDispatch<any>();
-
+  const loading = useSelector((state: AppRootStateType) => state.app.isLoading);
+  const dispatch = useAppDispatch();
+  const formSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Email address is required')
+      .email('Please enter valid email'),
+    password: Yup.string()
+      .required('password is required')
+      .min(3, 'password must be at 3 char long'),
+  });
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm<IFormInputs>({
-    mode: 'onChange',
+    mode: 'all',
+    resolver: yupResolver(formSchema),
   });
   const onSubmit = (data: IFormInputs) => {
     dispatch(setIsLoginTC(data));
@@ -39,14 +51,23 @@ const Login = () => {
   if (isAuth) {
     return <Navigate to={PATH.PROFILE} />;
   }
-
+  if (loading) {
+    return <Preloader />;
+  }
   return (
     <AuthWrapper>
       <div>
         <Title title="Sign in" />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.input}>
-            <Input type="text" label="Email" register={register} name="email" required />
+            <Input
+              type="text"
+              label="Email"
+              register={register}
+              error={errors.email?.message}
+              name="email"
+              required
+            />
             <div className={s.error}>{errors.email && errors.email.message}</div>
           </div>
           <div className={s.input}>
@@ -54,10 +75,11 @@ const Login = () => {
               type="password"
               label="Password"
               register={register}
+              error={errors.password?.message}
               name="password"
               required
             />
-            <div className={s.error}>{errors.email && errors.email.message}</div>
+            <div className={s.error}>{errors.password && errors.password.message}</div>
           </div>
           <NavLink to={PATH.SEND_EMAIL} className={s.forgot}>
             Forgot Password
