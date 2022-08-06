@@ -4,8 +4,13 @@
   border-radius: 30px;
   color: #ECECF9;
   background-color: #21268F;
-  box-shadow: 0 4px 18px rgba(33, 38, 143, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
+  opacity:0.5;
+  transition: all 0.5s ease;
+  &:hover{
+    opacity: 1;
+  }
 }
 .cancel_auth {
   width: 124px;
@@ -14,6 +19,12 @@
   color: #21268F;
   background-color: #D7D8EF;
   cursor: pointer;
+  opacity:0.6;
+  transition: all 0.5s ease;
+  &:hover{
+    opacity: 1;
+    color: #03053b;
+  }
 }
 .show_my_pack {
   background-color: #FFFFFF;

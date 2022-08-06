@@ -4,17 +4,20 @@ import { auth } from '../../dal/auth';
 import { IFormInputs } from '../../ui/Pages/login/Login';
 
 import { setIsLoading } from './appReducer';
+import { setUserInfo } from './userReducer';
 
 export const setIsLoginTC = createAsyncThunk(
   'login/setIsLogin',
   async (data: IFormInputs, { dispatch }) => {
     try {
       dispatch(setIsLoading({ loading: true }));
-      const response = await auth.login(data);
+      const userInfo = await auth.login(data);
+      console.log(userInfo);
+      dispatch(setUserInfo({ userInfo }));
       dispatch(setIsLogin({ value: true }));
-      dispatch(setIsLoading({ loading: false }));
     } catch (e) {
       console.log(e);
+    } finally {
       dispatch(setIsLoading({ loading: false }));
     }
   },

@@ -1,20 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { ResponseLoginType } from '../../common/types/ResponseTypes';
+
 const slice = createSlice({
   name: 'user',
   initialState: {
-    email: '',
-    _id: 0,
+    userInfo: {
+      _id: '',
+      email: '',
+      name: '',
+      avatar: '',
+    },
   } as InitialStateType,
   reducers: {
-    setEmail(state, action: PayloadAction<{ email: string }>) {
-      state.email = action.payload.email;
+    setUserInfo(state, action: PayloadAction<{ userInfo: ResponseLoginType }>) {
+      // eslint-disable-next-line no-debugger
+      debugger;
+      state.userInfo = action.payload.userInfo;
     },
   },
 });
 export const userReducer = slice.reducer;
-export const { setEmail } = slice.actions;
+export const { setUserInfo } = slice.actions;
 type InitialStateType = {
-  email: string;
-  _id: number;
+  userInfo: ResponseLoginType;
 };
