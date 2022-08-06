@@ -6,12 +6,14 @@ import { appReducer } from './slices/appReducer';
 import { authReducer } from './slices/authReducer';
 import { passwordReducer } from './slices/passwordReducer';
 import { registrationReducer } from './slices/registrationReducer';
+import { userReducer } from './slices/userReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   app: appReducer,
   registration: registrationReducer,
   restorePassword: passwordReducer,
+  userInfo: userReducer,
 });
 
 export const store = configureStore({
