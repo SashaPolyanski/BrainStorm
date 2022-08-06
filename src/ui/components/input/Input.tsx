@@ -35,8 +35,9 @@ export const Input = ({
     }
   };
   const finalInputClassName = `${s.input} ${error && s.errorInput}`;
+  const finalInputWrapper = `${s.inputWrapper} ${error && s.errorWrapper}`;
   return (
-    <div className={s.inputWrapper}>
+    <div className={finalInputWrapper}>
       <label className={s.label}>{label}</label>
       <input
         {...register(name, { required })}
