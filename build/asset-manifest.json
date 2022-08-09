@@ -8,8 +8,5 @@
     "main.3ba6e466.css.map": "/BrainStorm/static/css/main.3ba6e466.css.map",
     "main.09d65c83.js.map": "/BrainStorm/static/js/main.09d65c83.js.map"
   },
-  "entrypoints": [
-    "static/css/main.3ba6e466.css",
-    "static/js/main.09d65c83.js"
-  ]
+  "entrypoints": ["static/css/main.3ba6e466.css", "static/js/main.09d65c83.js"]
 }

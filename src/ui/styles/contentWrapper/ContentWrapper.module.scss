@@ -4,11 +4,10 @@
   align-items: center;
   min-height: 95vh;
   &__container {
-    width: 413px;
-    min-height: 600px;
+    width: 80%;
+    height: 100%;
     background: #f9f9fe;
     border-radius: 8px;
-    text-align: center;
     @media screen and (max-width: 600px) {
       width: 320px;
       min-height: 500px;
