@@ -3,12 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectPacks } from '../../../bll/selectors/selectors';
-import {
-  setPacks,
-  setRangeValue,
-  setSearchValue,
-  setSortPacks,
-} from '../../../bll/slices/packsReducer';
+import { setPacks, setSearchValue, setSortPacks } from '../../../bll/slices/packsReducer';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';
@@ -20,9 +15,7 @@ import s from './Packs.module.scss';
 
 export const Packs = () => {
   const dispatch = useAppDispatch();
-  const { cardsPack, sortPacks } = useSelector(selectPacks);
-  const min1 = useSelector((state: AppRootStateType) => state.packs.min);
-  const max1 = useSelector((state: AppRootStateType) => state.packs.max);
+  const { cardsPack, sortPacks, min, max, packName } = useSelector(selectPacks);
   const [filterOrder, setFilterOrder] = useState(0);
 
   const changeFilterValue = (filterName: string) => {
@@ -32,19 +25,10 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(setPacks());
-  }, [sortPacks, min1, max1]);
+  }, [sortPacks, min, max, packName]);
 
-  const debouncedInput = useDebounce((packName: string) => {
-    dispatch(setSearchValue({ packName }));
-  }, 500);
-
-  const onChangeHandler = ({ min, max }: { min: number; max: number }) => {
-    // console.log(`min = ${min}, max = ${max}`);
-    debouncedRange(min, max);
-  };
-
-  const debouncedRange = useDebounce((minVal: number, maxVal: number) => {
-    dispatch(setRangeValue({ min: minVal, max: maxVal }));
+  const debouncedInput = useDebounce((text: string) => {
+    dispatch(setSearchValue({ packName: text }));
   }, 500);
 
   const onInputHandler = (e: any) => {
@@ -72,7 +56,7 @@ export const Packs = () => {
         <Pack key={pack._id} pack={pack} />
       ))}
       <Input type="text" onInput={onInputHandler} />
-      <DoubleRangeInput min={1} max={100} onChange={onChangeHandler} />
+      <DoubleRangeInput min={1} max={100} />
     </div>
   );
 };

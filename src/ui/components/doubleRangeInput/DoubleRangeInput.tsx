@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
+import { setRangeValue } from '../../../bll/slices/packsReducer';
+import { useDebounce } from '../../../bll/utils/useDebounce';
+
 import s from './doubleRangeInput.module.scss';
 
 const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }) => {
@@ -8,6 +13,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<any>(null);
+  const dispatch = useDispatch();
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -38,8 +44,20 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
+    onChange && onChange({ min: minVal, max: maxVal });
   }, [minVal, maxVal, onChange]);
+
+  useEffect(() => {
+    onChange && onChange({ min: minVal, max: maxVal });
+  }, [minVal, maxVal, onChange]);
+
+  const debouncedRange = useDebounce((min1: number, max1: number) => {
+    dispatch(setRangeValue({ min: min1, max: max1 }));
+  }, 500);
+
+  useEffect(() => {
+    debouncedRange(minVal, maxVal);
+  }, [minVal, maxVal]);
 
   return (
     <div className={s.container}>
@@ -81,7 +99,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
 export type DoubleRangeInputType = {
   min: number;
   max: number;
-  onChange: ({ min: minVal, max: maxVal }: { min: number; max: number }) => void;
+  onChange?: ({ min: minVal, max: maxVal }: { min: number; max: number }) => void;
 };
 
 export default DoubleRangeInput;
