@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import './doubleRangeInput.scss';
-import { useDispatch } from 'react-redux';
-
-import { setRangeValue } from '../../../bll/slices/packsReducer';
-import { useDebounce } from '../../../bll/utils/useDebounce';
+import s from './doubleRangeInput.module.scss';
 
 const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState<number>(min);
@@ -12,7 +8,6 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<any>(null);
-  const dispatch = useDispatch();
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -47,12 +42,12 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
   }, [minVal, maxVal, onChange]);
 
   return (
-    <div className="container">
-      <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="slider__left-value">{minVal}</div>
-        <div className="slider__right-value">{maxVal}</div>
+    <div className={s.container}>
+      <div className={s.slider}>
+        <div className={s.slider__track} />
+        <div ref={range} className={s.slider__range} />
+        <div className={s.slider__leftValue}>{minVal}</div>
+        <div className={s.slider__rightValue}>{maxVal}</div>
       </div>
       <input
         type="range"
@@ -64,7 +59,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
           setMinVal(value);
           minValRef.current = value;
         }}
-        className="thumb thumb--left"
+        className={`${s.thumb} ${s.thumbLeft}`}
         style={{ zIndex: minVal > max - 100 ? '5' : '' }}
       />
       <input
@@ -77,7 +72,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
           setMaxVal(value);
           maxValRef.current = value;
         }}
-        className="thumb thumb--right"
+        className={`${s.thumb} ${s.thumbRight}`}
       />
     </div>
   );
