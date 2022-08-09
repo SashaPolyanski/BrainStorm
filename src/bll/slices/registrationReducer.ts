@@ -14,8 +14,9 @@ export const setRegistration = createAsyncThunk(
       return { isRegistered: true };
     } catch (err) {
       const error = err as AxiosError;
-      dispatch(setIsLoading({ loading: false }));
       return rejectWithValue(error.message);
+    } finally {
+      dispatch(setIsLoading({ loading: false }));
     }
   },
 );
@@ -27,11 +28,9 @@ const slice = createSlice({
   } as InitialStateType,
   reducers: {},
   extraReducers: builder => {
-    builder
-      .addCase(setRegistration.fulfilled, (state, action) => {
-        state.isRegistered = action.payload.isRegistered;
-      })
-      .addCase(setRegistration.rejected, (state, action) => {});
+    builder.addCase(setRegistration.fulfilled, (state, action) => {
+      state.isRegistered = action.payload.isRegistered;
+    });
   },
 });
 

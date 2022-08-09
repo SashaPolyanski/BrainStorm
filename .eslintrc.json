@@ -30,6 +30,8 @@
     }
   },
   "rules": {
+    "camelcase": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id", "user_id"] }],
     "react/function-component-definition": [
       2,
       {

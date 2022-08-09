@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { PATH } from './common/constants/constants';
 import NavigationBar from './ui/components/navigation/NavigationBar';
 import Login from './ui/Pages/login/Login';
+import { PackPage } from './ui/Pages/packs/PackPage';
 import CheckEmail from './ui/Pages/password/checkEmail/CheckEmail';
 import ForgotPassword from './ui/Pages/password/forgotPassword/ForgotPassword';
 import PasswordRecovery from './ui/Pages/password/passwordRecovery/PasswordRecovery';
@@ -21,6 +22,7 @@ const App = () => (
       <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
       <Route path={PATH.NEW_PASSWORD} element={<PasswordRecovery />} />
       <Route path={PATH.SEND_EMAIL} element={<ForgotPassword />} />
+      <Route path={PATH.PACKS} element={<PackPage />} />
     </Routes>
   </>
 );

@@ -18,6 +18,9 @@ const NavigationBar = () => (
       <li>
         <NavLink to={PATH.PROFILE}>Profile</NavLink>
       </li>
+      <li>
+        <NavLink to={PATH.PACKS}>Packs</NavLink>
+      </li>
     </ul>
   </nav>
 );
