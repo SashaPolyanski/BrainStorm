@@ -95,6 +95,13 @@ const slice = createSlice({
     ) {
       state.sortPacks = `${action.payload.filterOrder}${action.payload.filterName}`;
     },
+    setRangeValue(state, action: PayloadAction<{ min: number; max: number }>) {
+      state.min = action.payload.min;
+      state.max = action.payload.max;
+    },
+    setSearchValue(state, action: PayloadAction<{ packName: string }>) {
+      state.packName = action.payload.packName;
+    },
   },
   extraReducers: builder => {
     builder.addCase(setPacks.fulfilled, (state, action) => {
@@ -105,7 +112,7 @@ const slice = createSlice({
   },
 });
 
-export const { setSortPacks } = slice.actions;
+export const { setSortPacks, setRangeValue, setSearchValue } = slice.actions;
 export const packsReducer = slice.reducer;
 
 type InitialStateType = GetPacksParamsType & {

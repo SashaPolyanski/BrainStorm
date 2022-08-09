@@ -5,10 +5,15 @@ import { Navigate } from 'react-router-dom';
 
 import iconPhoto from '../../../assets/images/iconDownloadfoto.png';
 import { selectIsAuth, selectUser } from '../../../bll/selectors/selectors';
+import { logout } from '../../../bll/slices/authReducer';
+import { setRangeValue, setSearchValue } from '../../../bll/slices/packsReducer';
 import { updateUserAvatar } from '../../../bll/slices/userReducer';
 import { useAppDispatch } from '../../../bll/store';
+import { useDebounce } from '../../../bll/utils/useDebounce';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
+import DoubleRangeInput from '../../components/doubleRangeInput/DoubleRangeInput';
+import { Input } from '../../components/input/Input';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
 import s from './Profile.module.scss';
@@ -18,6 +23,11 @@ const Profile = () => {
   const isAuth = useSelector(selectIsAuth);
   const user = useSelector(selectUser);
   const dispatch = useAppDispatch();
+
+  // if (!isAuth) {
+  //   return <Navigate to={PATH.LOGIN} />;
+  // }
+
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
@@ -76,6 +86,18 @@ const Profile = () => {
         <div className={s.buttonWrapper}>
           <Button variant="auth" name="Logout" />
         </div>
+      </div>
+
+      <div>
+        Profile
+        <button
+          type="button"
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          logout
+        </button>
       </div>
     </AuthWrapper>
   );
