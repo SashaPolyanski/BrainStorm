@@ -25,7 +25,7 @@ export const Registration = () => {
   const navigate = useNavigate();
   const formSchema = Yup.object().shape({
     email: Yup.string()
-      .required('Email address is required')
+      .required('email address is required')
       .email('Please enter valid email'),
     password: Yup.string()
       .required('password is required')
@@ -60,7 +60,7 @@ export const Registration = () => {
               name="email"
               register={register}
               type="text"
-              label="Email"
+              label="Email*"
               required
               error={errors.email?.message}
             />
@@ -71,7 +71,7 @@ export const Registration = () => {
               name="password"
               register={register}
               type="password"
-              label="Password"
+              label="Password*"
               required
               error={errors.password?.message}
             />
@@ -82,7 +82,7 @@ export const Registration = () => {
               name="confirmPassword"
               register={register}
               type="password"
-              label="Confirm Password"
+              label="Confirm Password*"
               required
               error={errors.confirmPassword?.message}
             />

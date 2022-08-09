@@ -1,0 +1,46 @@
+.pack {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 2fr 3fr;
+  justify-items: flex-start;
+  height: 30px;
+  font-size: 20px;
+  min-width: 93vh;
+  padding-left: 40px;
+  position: relative;
+  width: 75%;
+  text-align: left;
+  color: #000;
+  line-height: 16px;
+  margin: 24px 0;
+}
+
+.btnBlock {
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+}
+
+.editBtn {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 20px;
+  align-items: center;
+}
+.learnBtn {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 20px;
+  align-items: center;
+}

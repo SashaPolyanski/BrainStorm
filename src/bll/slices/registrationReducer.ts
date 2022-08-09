@@ -3,15 +3,20 @@ import { AxiosError } from 'axios';
 
 import { auth } from '../../dal/auth';
 
+import { setIsLoading } from './appReducer';
+
 export const setRegistration = createAsyncThunk(
   'registration/setIsRegistered',
   async (param: { email: string; password: string }, { dispatch, rejectWithValue }) => {
     try {
+      dispatch(setIsLoading({ loading: true }));
       const response = await auth.register(param.email, param.password);
       return { isRegistered: true };
     } catch (err) {
       const error = err as AxiosError;
       return rejectWithValue(error.message);
+    } finally {
+      dispatch(setIsLoading({ loading: false }));
     }
   },
 );

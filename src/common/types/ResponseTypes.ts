@@ -3,6 +3,8 @@ export type ResponseLoginType = {
   email: string;
   name: string;
   avatar?: string;
+  publicCardPacksCount: number;
+  created: string;
 };
 
 // Packs response type

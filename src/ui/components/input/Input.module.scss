@@ -6,12 +6,12 @@
 
   &:after {
     position: absolute;
-    top: 55px;
+    top: 52px;
     left: 0;
     content: '';
     height: 1px;
     width: 100%;
-    background: #24254A;
+    background: #24254a;
     opacity: 0.2;
   }
 
@@ -41,11 +41,20 @@
 .label {
   font-size: 13px;
   opacity: 0.5;
-  color: #24254A;
+  color: #24254a;
   top: 30px;
 }
-.errorInput {
-  border-bottom: 1px solid red;
+.errorWrapper {
+  &:after {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: red;
+    opacity: 0.8;
+  }
 }
 .labelCheckbox {
   opacity: 1;
