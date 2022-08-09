@@ -5,11 +5,7 @@
     "node": true,
     "es2021": true
   },
-  "extends": [
-    "airbnb",
-    "prettier",
-    "plugin:react/recommended"
-  ],
+  "extends": ["airbnb", "prettier", "plugin:react/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -28,15 +24,8 @@
     },
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },
@@ -67,9 +56,7 @@
         "max": 1
       }
     ],
-    "@typescript-eslint/no-shadow": [
-      "error"
-    ],
+    "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-magic-numbers": [
       "off",
       {
@@ -168,9 +155,7 @@
     ],
     "no-unused-labels": "warn",
     "no-unused-vars": "off",
-    "no-use-before-define": [
-      "off"
-    ],
+    "no-use-before-define": ["off"],
     "no-useless-computed-key": "warn",
     "no-useless-concat": "warn",
     "no-useless-constructor": "warn",
@@ -219,9 +204,12 @@
     "react/require-default-props": "off",
     "react/style-prop-object": "warn",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": ["off", {
-      "additionalHooks": "useDispatch|useOtherHookWhichWillDefinitelyNotChange"
-    }],
+    "react-hooks/exhaustive-deps": [
+      "off",
+      {
+        "additionalHooks": "useDispatch|useOtherHookWhichWillDefinitelyNotChange"
+      }
+    ],
     "prettier/prettier": "error",
     "react/prop-types": 0,
     "react/display-name": "off",
@@ -229,10 +217,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".jsx",
-          ".tsx"
-        ]
+        "extensions": [".jsx", ".tsx"]
       }
     ],
     "import/extensions": "off",
@@ -241,20 +226,12 @@
       "error",
       {
         "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": [
-          "react"
-        ],
+        "pathGroupsExcludedImportTypes": ["react"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
         },
-        "groups": [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
         "pathGroups": [
           {
             "pattern": "react",

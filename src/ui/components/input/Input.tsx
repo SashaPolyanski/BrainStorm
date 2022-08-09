@@ -7,11 +7,12 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  name: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
-  register: Function;
+  name?: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
+  register?: Function;
   label?: string;
   required?: string | boolean;
-  type: 'text' | 'password' | 'checkbox';
+  value?: string;
+  type?: 'text' | 'password' | 'checkbox';
   error?: string;
 };
 export const Input = ({
@@ -23,6 +24,7 @@ export const Input = ({
   error,
   name,
   label,
+  value,
   ...rest
 }: SuperInputTextPropsType) => {
   const [isShown, setIsShow] = useState<boolean>(true);
@@ -40,7 +42,8 @@ export const Input = ({
     <div className={finalInputWrapper}>
       <label className={s.label}>{label}</label>
       <input
-        {...register(name, { required })}
+        value={value}
+        {...(register && register(name, { required }))}
         {...rest}
         type={isShown2}
         className={finalInputClassName}
