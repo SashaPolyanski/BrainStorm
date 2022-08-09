@@ -16,7 +16,8 @@ type ButtonPropsType = DefaultButtonPropsType & {
     | 'show_all_pack'
     | 'delete'
     | 'edit_learn'
-    | 'pagination';
+    | 'pagination'
+    | 'hidden';
 };
 
 const Button: React.FC<ButtonPropsType> = ({
@@ -48,6 +49,9 @@ const Button: React.FC<ButtonPropsType> = ({
       break;
     case 'pagination':
       finalClassName = `${s.pagination} ${finalClassName}`;
+      break;
+    case 'hidden':
+      finalClassName = `${s.hidden} ${finalClassName}`;
       break;
   }
   return (
