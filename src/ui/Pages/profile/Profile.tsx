@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { ChangeEvent, useRef } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { selectIsAuth } from '../../../bll/selectors/selectors';
+import iconPhoto from '../../../assets/images/iconDownloadfoto.png';
+import { selectIsAuth, selectUser } from '../../../bll/selectors/selectors';
 import { logout } from '../../../bll/slices/authReducer';
+import { setRangeValue, setSearchValue } from '../../../bll/slices/packsReducer';
+import { updateUserAvatar } from '../../../bll/slices/userReducer';
 import { useAppDispatch } from '../../../bll/store';
+import { useDebounce } from '../../../bll/utils/useDebounce';
 import { PATH } from '../../../common/constants/constants';
+import Button from '../../components/button/Button';
+import DoubleRangeInput from '../../components/doubleRangeInput/DoubleRangeInput';
+import { Input } from '../../components/input/Input';
+import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
+
+import s from './Profile.module.scss';
 
 const Profile = () => {
   const inRef = useRef<HTMLInputElement>(null);
@@ -17,32 +27,6 @@ const Profile = () => {
   // if (!isAuth) {
   //   return <Navigate to={PATH.LOGIN} />;
   // }
-
-  const debouncedRange = useDebounce((min?: number, max?: number, packName?: string) => {
-    dispatch(setPacksThunk({ min, pageCount: max, packName }));
-  }, 500);
-
-  const debouncedInput = useDebounce((packName?: string) => {
-    dispatch(setPacksThunk({ packName }));
-  }, 500);
-
-  const onChangeHandler = ({
-    min,
-    max,
-    packName,
-  }: {
-    min: number;
-    max: number;
-    packName?: string;
-  }) => {
-    // console.log(`min = ${min}, max = ${max}`);
-    debouncedRange(min, max, packName);
-  };
-
-  const onInputHandler = (e: any) => {
-    const text = e && e.currentTarget.value;
-    debouncedInput(text);
-  };
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -103,21 +87,19 @@ const Profile = () => {
           <Button variant="auth" name="Logout" />
         </div>
       </div>
+
+      <div>
+        Profile
+        <button
+          type="button"
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          logout
+        </button>
+      </div>
     </AuthWrapper>
-    <div>
-      Profile
-      <button
-        type="button"
-        onClick={() => {
-          dispatch(logout());
-        }}
-      >
-        logout
-      </button>
-      <input type="text" name="search" onInput={onInputHandler} />
-      <Input type="text" />
-      <DoubleRangeInput min={1} max={100} onChange={onChangeHandler} />
-    </div>
   );
 };
 

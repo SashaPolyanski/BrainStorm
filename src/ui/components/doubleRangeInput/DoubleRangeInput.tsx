@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import './doubleRangeInput.scss';
+import { useDispatch } from 'react-redux';
+
+import { setRangeValue } from '../../../bll/slices/packsReducer';
+import { useDebounce } from '../../../bll/utils/useDebounce';
 
 const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState<number>(min);
@@ -8,6 +12,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<any>(null);
+  const dispatch = useDispatch();
 
   // Convert to percentage
   const getPercent = useCallback(

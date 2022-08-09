@@ -7,8 +7,8 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  name: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
-  register: Function;
+  name?: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
+  register?: Function;
   label?: string;
   required?: string | boolean;
   type: 'text' | 'password' | 'checkbox';
@@ -39,7 +39,6 @@ export const Input = ({
     <div className={s.inputWrapper}>
       <label className={s.label}>{label}</label>
       <input
-        value={value}
         {...(register && register(name, { required }))}
         {...rest}
         type={isShown2}

@@ -15,7 +15,6 @@
 .slider__left-value,
 .slider__right-value {
   position: absolute;
-
 }
 
 .slider__track,
@@ -31,7 +30,7 @@
 }
 
 .slider__range {
-  background-color: #21268F;
+  background-color: #21268f;
   z-index: 2;
 }
 
@@ -39,7 +38,7 @@
 .slider__right-value {
   width: 30px;
   text-align: center;
-  background-color: #21268F;
+  background-color: #21268f;
   border-radius: 3px;
   padding: 2px;
   color: #dee2e6;
@@ -89,7 +88,7 @@
   margin-top: 4px;
   pointer-events: all;
   position: relative;
-  border: 4px solid #21268F;
+  border: 4px solid #21268f;
 }
 
 /* For Firefox browsers */
@@ -104,5 +103,4 @@
   margin-top: 4px;
   pointer-events: all;
   position: relative;
-
 }
