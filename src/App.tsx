@@ -3,7 +3,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { PATH } from './common/constants/constants';
-import NavigationBar from './ui/components/navigation/NavigationBar';
 import Login from './ui/Pages/login/Login';
 import { PackPage } from './ui/Pages/packs/PackPage';
 import CheckEmail from './ui/Pages/password/checkEmail/CheckEmail';

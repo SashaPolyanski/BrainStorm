@@ -3,14 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectPacks } from '../../../bll/selectors/selectors';
-import { setPacks, setSearchValue, setSortPacks } from '../../../bll/slices/packsSlice';
+import { setPacks, setSortPacks } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
-import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';
-import DoubleRangeInput from '../../components/doubleRangeInput/DoubleRangeInput';
-import { Input } from '../../components/input/Input';
 import { Pack } from '../../components/Pack/Pack';
-import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
 
 import s from './Packs.module.scss';
 
@@ -28,17 +24,8 @@ export const Packs = () => {
     dispatch(setPacks());
   }, [sortPacks, min, max, packName]);
 
-  const debouncedInput = useDebounce((text: string) => {
-    dispatch(setSearchValue({ packName: text }));
-  }, 500);
-
-  const onInputHandler = (e: any) => {
-    const text = e && e.currentTarget.value;
-    debouncedInput(text);
-  };
-
   return (
-    <div className={s.packsWrapper}>
+    <div>
       <div className={s.header}>
         <Button onClick={() => changeFilterValue('name')} variant="hidden" name="Name" />
         <Button
@@ -56,8 +43,6 @@ export const Packs = () => {
       {cardsPack.map(pack => (
         <Pack key={pack._id} pack={pack} />
       ))}
-      <Input type="text" onInput={onInputHandler} />
-      <DoubleRangeInput min={1} max={100} />
     </div>
   );
 };

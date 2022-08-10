@@ -1,0 +1,32 @@
+.container {
+  width: 20%;
+  background-color: #ececf9;
+}
+.contentWrapper {
+  padding: 20px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #D9D9F1;
+}
+.userAvatar {
+  width: 150px;
+  border-radius: 50%;
+}
+.containerDoubleRange {
+  display: block;
+}
+.userName {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.userJob {
+  margin-top: 10px;
+  opacity: 0.5;
+}
+.title {
+  font-weight: 600;
+  margin: 20px auto 60px auto;
+  text-align: center;
+}
