@@ -3,12 +3,13 @@ import React, { ChangeEvent } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { selectLoading } from '../../../../bll/selectors/selectors';
+import { selectIsAuth, selectLoading } from '../../../../bll/selectors/selectors';
 import { setNewPasswordTC } from '../../../../bll/slices/passwordReducer';
 import { useAppDispatch } from '../../../../bll/store';
+import { PATH } from '../../../../common/constants/constants';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';
 import Preloader from '../../../components/preloader/Preloader';
@@ -25,6 +26,8 @@ const PasswordRecovery = () => {
   const dispatch = useAppDispatch();
   const { token } = useParams<{ token: string }>();
   const loading = useSelector(selectLoading);
+  const isLogin = useSelector(selectIsAuth);
+
   const formSchema = Yup.object().shape({
     password: Yup.string()
       .required('password is required')
@@ -44,6 +47,10 @@ const PasswordRecovery = () => {
     dispatch(setNewPasswordTC({ password: password.password, token }));
     reset();
   };
+
+  if (!isLogin) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   if (loading) {
     return <Preloader />;

@@ -9,6 +9,7 @@ import { setRegistration } from '../../../bll/slices/registrationReducer';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import Pagination from '../../components/Pagination/Pagination';
 import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 

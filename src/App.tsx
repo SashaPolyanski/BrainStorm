@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { PATH } from './common/constants/constants';
 import NavigationBar from './ui/components/navigation/NavigationBar';
+import Pagination from './ui/components/Pagination/Pagination';
 import Login from './ui/Pages/login/Login';
 import CheckEmail from './ui/Pages/password/checkEmail/CheckEmail';
 import ForgotPassword from './ui/Pages/password/forgotPassword/ForgotPassword';

@@ -12,6 +12,7 @@ import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import Pagination from '../../components/Pagination/Pagination';
 import Preloader from '../../components/preloader/Preloader';
 import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
@@ -94,6 +95,7 @@ const Login = () => {
           </NavLink>
         </div>
       </div>
+      <Pagination />
     </AuthWrapper>
   );
 };
