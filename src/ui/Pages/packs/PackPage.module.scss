@@ -1,10 +1,11 @@
 .packPage {
   display: flex;
-  justify-content: start;
   margin-bottom: 50px;
+  width: 90%;
 }
 .title {
-  margin: 20px auto 20px 10px;
+  width: 90%;
+  margin: 20px auto 20px auto;
 }
 .icon {
   width: 25px;
