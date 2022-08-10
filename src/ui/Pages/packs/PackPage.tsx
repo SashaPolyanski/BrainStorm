@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { addPack } from '../../../bll/slices/packsReducer';
+import { addPack } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 

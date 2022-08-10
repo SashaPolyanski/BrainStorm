@@ -15,5 +15,5 @@ const slice = createSlice({
 type InitialStateType = {
   isLoading: boolean;
 };
-export const appReducer = slice.reducer;
+export const appSlice = slice.reducer;
 export const { setIsLoading } = slice.actions;

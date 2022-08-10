@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectPacks } from '../../../bll/selectors/selectors';
-import { setPacks, setSearchValue, setSortPacks } from '../../../bll/slices/packsReducer';
+import { setPacks, setSearchValue, setSortPacks } from '../../../bll/slices/packsSlice';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';

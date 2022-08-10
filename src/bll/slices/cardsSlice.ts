@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 import { cardsApi, CardType } from '../../dal/cards';
 import { AppRootStateType } from '../store';
 
-import { setIsLoading } from './appReducer';
+import { setIsLoading } from './appSlice';
 
 export const setCards = createAsyncThunk(
   'cards/setCards',
@@ -130,4 +130,4 @@ type initialStateType = {
   sortCards: string;
 };
 
-export const cardsReducer = slice.reducer;
+export const cardsSlice = slice.reducer;

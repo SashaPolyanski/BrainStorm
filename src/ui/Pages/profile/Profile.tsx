@@ -1,39 +1,41 @@
-import React, { ChangeEvent, useRef } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import iconPhoto from '../../../assets/images/iconDownloadfoto.png';
 import { selectIsAuth, selectUser } from '../../../bll/selectors/selectors';
-import { logout } from '../../../bll/slices/authReducer';
-import { setRangeValue, setSearchValue } from '../../../bll/slices/packsReducer';
-import { updateUserAvatar } from '../../../bll/slices/userReducer';
+import { updateUserInfo } from '../../../bll/slices/userSlice';
 import { useAppDispatch } from '../../../bll/store';
-import { useDebounce } from '../../../bll/utils/useDebounce';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
-import DoubleRangeInput from '../../components/doubleRangeInput/DoubleRangeInput';
 import { Input } from '../../components/input/Input';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
 import s from './Profile.module.scss';
 
 const Profile = () => {
+  const [edit, setEdit] = useState(false);
   const inRef = useRef<HTMLInputElement>(null);
   const isAuth = useSelector(selectIsAuth);
   const user = useSelector(selectUser);
   const dispatch = useAppDispatch();
-
-  // if (!isAuth) {
-  //   return <Navigate to={PATH.LOGIN} />;
-  // }
-
+  const { register, handleSubmit } = useForm<FormDataType>({
+    defaultValues: {
+      name: user.name,
+    },
+  });
+  const onSubmit: SubmitHandler<FormDataType> = data => {
+    setEdit(!edit);
+    dispatch(updateUserInfo(data));
+  };
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
       if (file.size < 4000000) {
         convertFileToBase64(file, (file64: string) => {
-          dispatch(updateUserAvatar(file64));
+          dispatch(updateUserInfo({ avatar: file64 }));
         });
       } else {
         // dispatch(setAppErrorAC('Файл слишком большого размера'));
@@ -50,6 +52,9 @@ const Profile = () => {
   };
   const uploadHandler2 = () => {
     inRef && inRef.current && inRef.current.click();
+  };
+  const editNameHandler = () => {
+    setEdit(!edit);
   };
   const registrationDate = user.created.slice(0, 10).split('-').reverse().join('-');
   if (!isAuth) {
@@ -79,7 +84,26 @@ const Profile = () => {
           <div className={s.cardsCount}>
             Cards Packs: {user.publicCardPacksCount} quantity
           </div>
-          <div className={s.userName}>Name: {user.name}</div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={s.userName}>
+              Name:
+              {edit ? (
+                <Input register={register} type="text" name="name" />
+              ) : (
+                <span>{user.name}</span>
+              )}
+              {!edit ? (
+                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+                <span onClick={editNameHandler} className={s.edit}>
+                  edit
+                </span>
+              ) : (
+                <button type="submit" className={s.edit}>
+                  save
+                </button>
+              )}
+            </div>
+          </form>
           <div className={s.userEmail}>Email: {user.email}</div>
           <div>Registration: {registrationDate}</div>
         </div>
@@ -87,20 +111,11 @@ const Profile = () => {
           <Button variant="auth" name="Logout" />
         </div>
       </div>
-
-      <div>
-        Profile
-        <button
-          type="button"
-          onClick={() => {
-            dispatch(logout());
-          }}
-        >
-          logout
-        </button>
-      </div>
     </AuthWrapper>
   );
 };
 
+type FormDataType = {
+  name: string;
+};
 export default Profile;

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { selectLoading } from '../../../../bll/selectors/selectors';
-import { setNewPasswordTC } from '../../../../bll/slices/passwordReducer';
+import { setNewPasswordTC } from '../../../../bll/slices/passwordSlice';
 import { useAppDispatch } from '../../../../bll/store';
 import Button from '../../../components/button/Button';
 import { Input } from '../../../components/input/Input';

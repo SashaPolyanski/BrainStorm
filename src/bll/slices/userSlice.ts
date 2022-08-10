@@ -3,12 +3,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ResponseLoginType } from '../../common/types/ResponseTypes';
 import { user } from '../../dal/user';
 
-export const updateUserAvatar = createAsyncThunk(
+export const updateUserInfo = createAsyncThunk(
   'user/updateAvatar',
-  async (avatar: string, { dispatch }) => {
+  async (param: { avatar?: string; name?: string }, { dispatch }) => {
     try {
-      const newAvatar = await user.updateUserAvatar(avatar);
-      dispatch(changeUserAvatar({ avatar: newAvatar }));
+      const updateUser = await user.updateUserAvatar(param.avatar, param.name);
+      dispatch(changeUserInfo({ avatar: updateUser.avatar, name: updateUser.name }));
     } catch (e) {
       console.log(e);
     }
@@ -30,16 +30,14 @@ const slice = createSlice({
     setUserInfo(state, action: PayloadAction<{ userInfo: ResponseLoginType }>) {
       state.userInfo = action.payload.userInfo;
     },
-    changeUserAvatar(state, action: PayloadAction<{ avatar: string }>) {
+    changeUserInfo(state, action: PayloadAction<{ avatar?: string; name?: string }>) {
       state.userInfo.avatar = action.payload.avatar;
-    },
-    changeUserName(state, action: PayloadAction<{ name: string }>) {
-      state.userInfo.name = action.payload.name;
+      if (action.payload.name) state.userInfo.name = action.payload.name;
     },
   },
 });
-export const userReducer = slice.reducer;
-export const { setUserInfo, changeUserAvatar, changeUserName } = slice.actions;
+export const userSlice = slice.reducer;
+export const { setUserInfo, changeUserInfo } = slice.actions;
 type InitialStateType = {
   userInfo: ResponseLoginType;
 };

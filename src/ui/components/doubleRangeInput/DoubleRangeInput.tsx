@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setRangeValue } from '../../../bll/slices/packsReducer';
+import { setRangeValue } from '../../../bll/slices/packsSlice';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 
 import s from './doubleRangeInput.module.scss';

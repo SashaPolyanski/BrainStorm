@@ -3,8 +3,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { auth } from '../../dal/auth';
 import { IFormInputs } from '../../ui/Pages/login/Login';
 
-import { setIsLoading } from './appReducer';
-import { setUserInfo } from './userReducer';
+import { setIsLoading } from './appSlice';
+import { setUserInfo } from './userSlice';
 
 export const setIsLoginTC = createAsyncThunk(
   'login/setIsLogin',
@@ -52,5 +52,5 @@ type InitialStateType = {
   isLogin: boolean;
   error: string;
 };
-export const authReducer = slice.reducer;
+export const authSlice = slice.reducer;
 export const { setError, setIsLogin } = slice.actions;

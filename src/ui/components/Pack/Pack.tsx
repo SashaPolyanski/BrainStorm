@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { deletePack, updatePackName } from '../../../bll/slices/packsReducer';
+import { deletePack, updatePackName } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import { PacksType } from '../../../dal/packs';
 import Button from '../button/Button';

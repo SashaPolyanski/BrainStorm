@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { setRegistration } from '../../../bll/slices/registrationReducer';
+import { setRegistration } from '../../../bll/slices/registrationSlice';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
