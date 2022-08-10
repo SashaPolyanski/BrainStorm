@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 
 import { selectPacks } from '../../../bll/selectors/selectors';
 import { setPacks, setSearchValue, setSortPacks } from '../../../bll/slices/packsSlice';
-import { AppRootStateType, useAppDispatch } from '../../../bll/store';
+import { useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';
 import DoubleRangeInput from '../../components/doubleRangeInput/DoubleRangeInput';
 import { Input } from '../../components/input/Input';
 import { Pack } from '../../components/Pack/Pack';
+import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
 
 import s from './Packs.module.scss';
 
@@ -37,26 +38,32 @@ export const Packs = () => {
   };
 
   return (
-    <div className={s.packsWrapper}>
-      <div className={s.header}>
-        <Button onClick={() => changeFilterValue('name')} variant="hidden" name="Name" />
-        <Button
-          onClick={() => changeFilterValue('cardsCount')}
-          variant="hidden"
-          name="Card"
-        />
-        <Button
-          onClick={() => changeFilterValue('updated')}
-          variant="hidden"
-          name="Last Updated"
-        />
-        <div>Created By</div>
+    <ContentWrapper>
+      <div className={s.packsWrapper}>
+        <div className={s.header}>
+          <Button
+            onClick={() => changeFilterValue('name')}
+            variant="hidden"
+            name="Name"
+          />
+          <Button
+            onClick={() => changeFilterValue('cardsCount')}
+            variant="hidden"
+            name="Card"
+          />
+          <Button
+            onClick={() => changeFilterValue('updated')}
+            variant="hidden"
+            name="Last Updated"
+          />
+          <div>Created By</div>
+        </div>
+        {cardsPack.map(pack => (
+          <Pack key={pack._id} pack={pack} />
+        ))}
+        <Input type="text" onInput={onInputHandler} />
+        <DoubleRangeInput min={1} max={100} />
       </div>
-      {cardsPack.map(pack => (
-        <Pack key={pack._id} pack={pack} />
-      ))}
-      <Input type="text" onInput={onInputHandler} />
-      <DoubleRangeInput min={1} max={100} />
-    </div>
+    </ContentWrapper>
   );
 };
