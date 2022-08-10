@@ -12,7 +12,6 @@ type PropsType = {
 export const ContentWrapper = ({ children }: PropsType) => (
   <div>
     <Header />
-
     <div className={s.wrapper}>
       <Sidebar />
       <div className={s.wrapper__container}>{children}</div>
