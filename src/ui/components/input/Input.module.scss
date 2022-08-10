@@ -64,6 +64,7 @@
 .labelCheckbox {
   opacity: 1;
 }
+
 .searchWrapper {
   margin-left: 40px;
   width: 70%;
@@ -71,13 +72,16 @@
     content: none;
   }
 }
+
 .search {
   font-size: 20px;
   height: 40px;
   width: 85%;
-  border: 1px solid #635d80;
-  background: #d9d9f1;
-  opacity: 0.5;
+
+  border: 1px solid #635D80;
+  background: #D9D9F1;
+  opacity: 0.6;
+
   position: relative;
   margin: 0 auto;
   padding-left: 50px;
