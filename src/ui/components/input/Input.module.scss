@@ -65,6 +65,8 @@
   opacity: 1;
 }
 .searchWrapper {
+  margin-left: 40px;
+  width: 70%;
   &:after {
     content: none;
   }
@@ -78,5 +80,9 @@
   opacity: 0.5;
   position: relative;
   margin: 0 auto;
+  padding-left: 50px;
+  &:focus {
+    opacity: 0.76;
+  }
 }
 

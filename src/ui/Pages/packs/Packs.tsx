@@ -25,7 +25,7 @@ export const Packs = () => {
   }, [sortPacks, min, max, packName]);
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <div className={s.header}>
         <Button onClick={() => changeFilterValue('name')} variant="hidden" name="Name" />
         <Button
@@ -40,9 +40,11 @@ export const Packs = () => {
         />
         <div>Created By</div>
       </div>
-      {cardsPack.map(pack => (
-        <Pack key={pack._id} pack={pack} />
-      ))}
+      <div className={s.packsContainer}>
+        {cardsPack.map(pack => (
+          <Pack key={pack._id} pack={pack} />
+        ))}
+      </div>
     </div>
   );
 };
