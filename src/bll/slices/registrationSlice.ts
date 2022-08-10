@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { auth } from '../../dal/auth';
 
-import { setIsLoading } from './appReducer';
+import { setIsLoading } from './appSlice';
 
 export const setRegistration = createAsyncThunk(
   'registration/setIsRegistered',
@@ -38,4 +38,4 @@ export type InitialStateType = {
   isRegistered: boolean;
 };
 
-export const registrationReducer = slice.reducer;
+export const registrationSlice = slice.reducer;

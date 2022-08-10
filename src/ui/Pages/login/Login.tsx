@@ -7,7 +7,7 @@ import { Navigate, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import { selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
-import { setIsLoginTC } from '../../../bll/slices/authReducer';
+import { setIsLoginTC } from '../../../bll/slices/authSlice';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';

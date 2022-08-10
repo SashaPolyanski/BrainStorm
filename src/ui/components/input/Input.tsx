@@ -7,7 +7,7 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  name?: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
+  name?: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe' | 'name';
   register?: Function;
   label?: string;
   required?: string | boolean;

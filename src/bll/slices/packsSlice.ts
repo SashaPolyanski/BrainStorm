@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { GetPacksParamsType, packApi, PacksType } from '../../dal/packs';
 import { AppRootStateType } from '../store';
 
-import { setIsLoading } from './appReducer';
+import { setIsLoading } from './appSlice';
 
 export const setPacks = createAsyncThunk(
   'packs/setPacks',
@@ -113,7 +113,7 @@ const slice = createSlice({
 });
 
 export const { setSortPacks, setRangeValue, setSearchValue } = slice.actions;
-export const packsReducer = slice.reducer;
+export const packsSlice = slice.reducer;
 
 type InitialStateType = GetPacksParamsType & {
   cardsPack: Array<PacksType>;

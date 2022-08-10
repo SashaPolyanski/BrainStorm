@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 
 import { auth } from '../../dal/auth';
 
-import { setIsLoading } from './appReducer';
+import { setIsLoading } from './appSlice';
 
 type initialType = {
   email: string;
@@ -57,5 +57,5 @@ const slice = createSlice({
     },
   },
 });
-export const passwordReducer = slice.reducer;
+export const passwordSlice = slice.reducer;
 export const { setNewPassword, sendEmail } = slice.actions;
