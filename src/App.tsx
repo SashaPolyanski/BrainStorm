@@ -14,7 +14,7 @@ import { Registration } from './ui/Pages/registration/Registration';
 
 const App = () => (
   <>
-    <NavigationBar />
+    {/* <NavigationBar /> */}
     <Routes>
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
