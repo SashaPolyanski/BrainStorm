@@ -37,7 +37,9 @@ export const Input = ({
     }
   };
   let finalInputClassName = `${s.input} ${error && s.errorInput}`;
-  const finalInputWrapper = `${s.inputWrapper} ${error && s.errorWrapper}`;
+  const finalInputWrapper = `${variant === 'search' ? s.searchWrapper : s.inputWrapper} ${
+    error && s.errorWrapper
+  }`;
 
   switch (variant) {
     case 'search':

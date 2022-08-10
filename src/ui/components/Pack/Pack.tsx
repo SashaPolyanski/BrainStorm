@@ -36,19 +36,9 @@ export const Pack = ({ pack }: PackPropsType) => {
         <div>{updatedDate}</div>
         <div>{user_name}</div>
         <div className={s.btnBlock}>
-          <Button
-            variant="delete"
-            name="Delete"
-            className={s.deleteBtn}
-            onClick={deletePackHandler}
-          />
-          <Button
-            variant="edit_learn"
-            name="Edit"
-            className={s.editBtn}
-            onClick={updatePackNameHandler}
-          />
-          <Button variant="edit_learn" name="Learn" className={s.learnBtn} />
+          <Button variant="delete" name="Delete" onClick={deletePackHandler} />
+          <Button variant="edit_learn" name="Edit" onClick={updatePackNameHandler} />
+          <Button variant="edit_learn" name="Learn" />
         </div>
       </div>
     </div>
