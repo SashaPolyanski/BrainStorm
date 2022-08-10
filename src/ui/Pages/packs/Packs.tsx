@@ -38,32 +38,26 @@ export const Packs = () => {
   };
 
   return (
-    <ContentWrapper>
-      <div className={s.packsWrapper}>
-        <div className={s.header}>
-          <Button
-            onClick={() => changeFilterValue('name')}
-            variant="hidden"
-            name="Name"
-          />
-          <Button
-            onClick={() => changeFilterValue('cardsCount')}
-            variant="hidden"
-            name="Card"
-          />
-          <Button
-            onClick={() => changeFilterValue('updated')}
-            variant="hidden"
-            name="Last Updated"
-          />
-          <div>Created By</div>
-        </div>
-        {cardsPack.map(pack => (
-          <Pack key={pack._id} pack={pack} />
-        ))}
-        <Input type="text" onInput={onInputHandler} />
-        <DoubleRangeInput min={1} max={100} />
+    <div className={s.packsWrapper}>
+      <div className={s.header}>
+        <Button onClick={() => changeFilterValue('name')} variant="hidden" name="Name" />
+        <Button
+          onClick={() => changeFilterValue('cardsCount')}
+          variant="hidden"
+          name="Card"
+        />
+        <Button
+          onClick={() => changeFilterValue('updated')}
+          variant="hidden"
+          name="Last Updated"
+        />
+        <div>Created By</div>
       </div>
-    </ContentWrapper>
+      {cardsPack.map(pack => (
+        <Pack key={pack._id} pack={pack} />
+      ))}
+      <Input type="text" onInput={onInputHandler} />
+      <DoubleRangeInput min={1} max={100} />
+    </div>
   );
 };
