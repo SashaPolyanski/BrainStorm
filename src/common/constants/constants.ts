@@ -4,8 +4,9 @@ export enum Url {
   AUTH_ME = '/auth/me',
   REGISTER = '/auth/register',
   UPDATE_ME = '/auth/me',
-  GET_PACKS = '/cards/pack',
+  PACKS_URL = '/cards/pack',
   GET_USER = '/cards/pack',
+  CARDS_URL = '/cards/card',
   FORGOT = 'auth/forgot',
   SET_NEW_PASSWORD = 'auth/set-new-password',
 }

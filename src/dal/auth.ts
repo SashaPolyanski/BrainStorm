@@ -5,7 +5,7 @@ import { instance } from './settings';
 
 export const auth = {
   login(data: any) {
-    return instance.post<ResponseLoginType>(Url.LOGIN, data);
+    return instance.post<ResponseLoginType>(Url.LOGIN, data).then(res => res.data);
   },
   logout() {
     return instance.delete(Url.LOGOUT);

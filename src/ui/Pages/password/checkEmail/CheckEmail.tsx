@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import emailLogo from '../../../../assets/images/img.png';
 import { selectEmail } from '../../../../bll/selectors/selectors';
+import { Title } from '../../../components/title/Title';
 import { AuthWrapper } from '../../../styles/authWrapper/AuthWrapper';
 
 import s from './CheckEmail.module.scss';
@@ -13,7 +14,7 @@ const CheckEmail = () => {
   return (
     <AuthWrapper>
       <div>
-        <h2 className={s.title}>BrainStorm</h2>
+        <Title title="BrainStorm" />
         <img className={s.imageLogo} src={emailLogo} alt="emailLogo" />
         <h2 className={s.title}>Check Email</h2>
       </div>

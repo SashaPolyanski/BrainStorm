@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+  width: 80%;
+  margin: 30px auto 0 auto;
+  border-radius: 8px;
+  &__container {
+    width: 80%;
+    height: 80vh;
+    background: #fefeff;
+    @media screen and (max-width: 600px) {
+      width: 320px;
+      min-height: 500px;
+    }
+  }
+}

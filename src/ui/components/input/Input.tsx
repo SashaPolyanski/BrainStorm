@@ -7,12 +7,13 @@ type DefaultInputPropsType = DetailedHTMLProps<
   HTMLInputElement
 >;
 type SuperInputTextPropsType = DefaultInputPropsType & {
-  name: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe';
-  register: Function;
+  name?: 'password' | 'email' | 'confirmPassword' | 'login' | 'rememberMe' | 'name';
+  register?: Function;
   label?: string;
   required?: string | boolean;
   type: 'text' | 'password' | 'checkbox';
   error?: string;
+  variant?: 'search';
 };
 export const Input = ({
   type,
@@ -23,6 +24,7 @@ export const Input = ({
   error,
   name,
   label,
+  variant,
   ...rest
 }: SuperInputTextPropsType) => {
   const [isShown, setIsShow] = useState<boolean>(true);
@@ -34,12 +36,21 @@ export const Input = ({
       setIsShow2((type = 'password'));
     }
   };
-  const finalInputClassName = `${s.input} ${error && s.errorInput}`;
+  let finalInputClassName = `${s.input} ${error && s.errorInput}`;
+  const finalInputWrapper = `${variant === 'search' ? s.searchWrapper : s.inputWrapper} ${
+    error && s.errorWrapper
+  }`;
+
+  switch (variant) {
+    case 'search':
+      finalInputClassName = `${s.search}`;
+      break;
+  }
   return (
-    <div className={s.inputWrapper}>
+    <div className={finalInputWrapper}>
       <label className={s.label}>{label}</label>
       <input
-        {...register(name, { required })}
+        {...(register && register(name, { required }))}
         {...rest}
         type={isShown2}
         className={finalInputClassName}

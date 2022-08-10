@@ -6,12 +6,12 @@
 
   &:after {
     position: absolute;
-    top: 55px;
+    top: 52px;
     left: 0;
     content: '';
     height: 1px;
     width: 100%;
-    background: #24254A;
+    background: #24254a;
     opacity: 0.2;
   }
 
@@ -22,6 +22,7 @@
     padding-bottom: 5px;
   }
 }
+
 .eye {
   position: absolute;
   height: 18px;
@@ -35,18 +36,56 @@
   z-index: 2;
   opacity: 0.5;
 }
+
 .eyeShow {
   background: url(../../../assets/images/no-view.svg) no-repeat center/contain;
 }
+
 .label {
   font-size: 13px;
   opacity: 0.5;
-  color: #24254A;
+  color: #24254a;
   top: 30px;
 }
-.errorInput {
-  border-bottom: 1px solid red;
+
+.errorWrapper {
+  &:after {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    content: '';
+    height: 1px;
+    width: 100%;
+    background: red;
+    opacity: 0.8;
+  }
 }
+
 .labelCheckbox {
   opacity: 1;
+}
+
+.searchWrapper {
+  margin-left: 40px;
+  width: 70%;
+  &:after {
+    content: none;
+  }
+}
+
+.search {
+  font-size: 20px;
+  height: 40px;
+  width: 85%;
+
+  border: 1px solid #635D80;
+  background: #D9D9F1;
+  opacity: 0.6;
+
+  position: relative;
+  margin: 0 auto;
+  padding-left: 50px;
+  &:focus {
+    opacity: 0.76;
+  }
 }

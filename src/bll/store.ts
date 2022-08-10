@@ -2,16 +2,22 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
-import { appReducer } from './slices/appReducer';
-import { authReducer } from './slices/authReducer';
-import { passwordReducer } from './slices/passwordReducer';
-import { registrationReducer } from './slices/registrationReducer';
+import { appSlice } from './slices/appSlice';
+import { authSlice } from './slices/authSlice';
+import { cardsSlice } from './slices/cardsSlice';
+import { packsSlice } from './slices/packsSlice';
+import { passwordSlice } from './slices/passwordSlice';
+import { registrationSlice } from './slices/registrationSlice';
+import { userSlice } from './slices/userSlice';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  app: appReducer,
-  registration: registrationReducer,
-  restorePassword: passwordReducer,
+  auth: authSlice,
+  app: appSlice,
+  registration: registrationSlice,
+  restorePassword: passwordSlice,
+  userInfo: userSlice,
+  packs: packsSlice,
+  cards: cardsSlice,
 });
 
 export const store = configureStore({
@@ -19,8 +25,6 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });
 export type AppRootStateType = ReturnType<typeof store.getState>;
-
-export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector;
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

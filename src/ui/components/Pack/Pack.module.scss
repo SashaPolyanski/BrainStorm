@@ -1,0 +1,48 @@
+.pack {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  font-size: 20px;
+  min-width: 93vh;
+  position: relative;
+  text-align: left;
+  color: #000;
+  line-height: 16px;
+  margin: 24px auto;
+  padding: 0 25px 0 25px;
+  &:nth-child(odd) {
+    background-color: #ececf9;
+  }
+}
+
+.btnBlock {
+  width: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+}
+
+.editBtn {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 20px;
+  align-items: center;
+}
+.learnBtn {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 20px;
+  align-items: center;
+}
