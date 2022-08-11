@@ -1,23 +1,21 @@
 .pack {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 55px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 2fr 3fr;
+  justify-items: flex-start;
+  height: 30px;
   font-size: 20px;
   min-width: 93vh;
+  padding-left: 40px;
   position: relative;
+  width: 75%;
   text-align: left;
   color: #000;
   line-height: 16px;
-  margin: 24px auto;
-  padding: 0 25px 0 25px;
-  &:nth-child(odd) {
-    background-color: #ececf9;
-  }
+  margin: 24px 0;
 }
 
 .btnBlock {
-  width: 220px;
+  width: 250px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

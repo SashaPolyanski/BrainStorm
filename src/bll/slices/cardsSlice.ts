@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
 import { cardsApi, CardType } from '../../dal/cards';
@@ -106,7 +106,14 @@ export const slice = createSlice({
     packId: '',
     sortCards: '0updated',
   } as initialStateType,
-  reducers: {},
+  reducers: {
+    setSortCards(
+      state,
+      action: PayloadAction<{ filterOrder: number; filterName: string }>,
+    ) {
+      state.sortCards = `${action.payload.filterOrder}${action.payload.filterName}`;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(setCards.fulfilled, (state, action) => {
       if (action.payload) {
@@ -130,4 +137,5 @@ type initialStateType = {
   sortCards: string;
 };
 
+export const { setSortCards } = slice.actions;
 export const cardsSlice = slice.reducer;
