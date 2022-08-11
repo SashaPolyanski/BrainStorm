@@ -14,7 +14,6 @@ import s from './PackPage.module.scss';
 import { Packs } from './Packs';
 
 export const PackPage = () => {
-  const userName = useSelector(selectUser);
   const dispatch = useAppDispatch();
   const [isPrivate, setIsPrivate] = useState(false);
 
@@ -33,7 +32,7 @@ export const PackPage = () => {
   };
   return (
     <ContentWrapper>
-      <h2 className={s.title}>Packs list {userName.name}</h2>
+      <h2 className={s.title}>Packs list</h2>
       <span />
       <div className={s.packPage}>
         <svg

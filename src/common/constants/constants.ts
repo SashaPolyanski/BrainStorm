@@ -20,5 +20,5 @@ export enum PATH {
   NOT_FOUND = '/404',
   EDIT_PROFILE = '/edit-profile',
   PACKS = '/packs',
-  CARDS = '/cards',
+  CARDS = '/cards/:id',
 }

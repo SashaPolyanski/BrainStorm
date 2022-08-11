@@ -3,6 +3,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { PATH } from './common/constants/constants';
+import NavigationBar from './ui/components/navigation/NavigationBar';
+import { CardsPage } from './ui/Pages/cards/CardsPage';
 import Login from './ui/Pages/login/Login';
 import { PackPage } from './ui/Pages/packs/PackPage';
 import CheckEmail from './ui/Pages/password/checkEmail/CheckEmail';
@@ -13,7 +15,7 @@ import { Registration } from './ui/Pages/registration/Registration';
 
 const App = () => (
   <>
-    {/* <NavigationBar /> */}
+    <NavigationBar />
     <Routes>
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTRATION} element={<Registration />} />
@@ -22,6 +24,7 @@ const App = () => (
       <Route path={PATH.NEW_PASSWORD} element={<PasswordRecovery />} />
       <Route path={PATH.SEND_EMAIL} element={<ForgotPassword />} />
       <Route path={PATH.PACKS} element={<PackPage />} />
+      <Route path={PATH.CARDS} element={<CardsPage />} />
     </Routes>
   </>
 );

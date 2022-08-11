@@ -102,6 +102,9 @@ const slice = createSlice({
     setSearchValue(state, action: PayloadAction<{ packName: string }>) {
       state.packName = action.payload.packName;
     },
+    showCertainPacks(state, action: PayloadAction<{ id: string }>) {
+      state.user_id = action.payload.id;
+    },
   },
   extraReducers: builder => {
     builder.addCase(setPacks.fulfilled, (state, action) => {
@@ -112,7 +115,8 @@ const slice = createSlice({
   },
 });
 
-export const { setSortPacks, setRangeValue, setSearchValue } = slice.actions;
+export const { setSortPacks, setRangeValue, setSearchValue, showCertainPacks } =
+  slice.actions;
 export const packsSlice = slice.reducer;
 
 type InitialStateType = GetPacksParamsType & {
