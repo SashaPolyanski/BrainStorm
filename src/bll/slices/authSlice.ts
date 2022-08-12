@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import { auth } from '../../dal/auth';
 import { IFormInputs } from '../../ui/Pages/login/Login';
@@ -16,7 +17,12 @@ export const setIsLoginTC = createAsyncThunk(
       dispatch(setUserInfo({ userInfo }));
       dispatch(setIsLogin({ value: true }));
     } catch (e) {
-      console.log(e);
+      if (e instanceof AxiosError) {
+        const error = e.response
+          ? e.response.data.error
+          : `${e.message}, more details in the console`;
+        dispatch(setError({ error }));
+      }
     } finally {
       dispatch(setIsLoading({ loading: false }));
     }

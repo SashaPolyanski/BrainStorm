@@ -6,13 +6,15 @@ import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
+import App from '../../../App';
+import { authError, selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
 import { setIsLoginTC } from '../../../bll/slices/authSlice';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
 import Preloader from '../../components/preloader/Preloader';
+import SnackBar from '../../components/snackBar/snackBar';
 import { Title } from '../../components/title/Title';
 import { AuthWrapper } from '../../styles/authWrapper/AuthWrapper';
 
@@ -27,6 +29,8 @@ const Login = () => {
   const isAuth = useSelector(selectIsAuth);
   const loading = useSelector(selectLoading);
   const dispatch = useAppDispatch();
+  const error = useSelector((state: AppRootStateType) => state.auth.error);
+
   const formSchema = Yup.object().shape({
     email: Yup.string()
       .required('Email address is required')
@@ -35,6 +39,7 @@ const Login = () => {
       .required('password is required')
       .min(3, 'password must be at 3 char long'),
   });
+
   const {
     register,
     formState: { errors },
@@ -94,6 +99,7 @@ const Login = () => {
           </NavLink>
         </div>
       </div>
+      {error && <SnackBar>{error}</SnackBar>}
     </AuthWrapper>
   );
 };

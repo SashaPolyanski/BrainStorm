@@ -3,22 +3,28 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectCards } from '../../../bll/selectors/selectors';
-import { setCards } from '../../../bll/slices/cardsSlice';
+import {
+  clearQuestionAnswerName,
+  setCardQuestionName,
+  setCards,
+} from '../../../bll/slices/cardsSlice';
 import { useAppDispatch } from '../../../bll/store';
+import { useDebounce } from '../../../bll/utils/useDebounce';
 
 import { Card } from './card/Card';
 import s from './Cards.module.scss';
 import { CardsHeader } from './cardsHeader/CardsHeader';
 
 export const Cards = ({ packId }: CardsPropsType) => {
-  const { cards, sortCards } = useSelector(selectCards);
   const dispatch = useAppDispatch();
+
+  const { cards, sortCards, cardQuestion, cardAnswer } = useSelector(selectCards);
 
   useEffect(() => {
     if (packId) {
       dispatch(setCards(packId));
     }
-  }, [sortCards]);
+  }, [sortCards, cardQuestion]);
 
   return (
     <div className={s.wrapper}>
