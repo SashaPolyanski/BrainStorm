@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import LinearPreloader from '../../components/linearPreloader/LinearPreloader';
 import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
 
 import s from './PackPage.module.scss';
