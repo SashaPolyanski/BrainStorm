@@ -113,6 +113,16 @@ export const slice = createSlice({
     ) {
       state.sortCards = `${action.payload.filterOrder}${action.payload.filterName}`;
     },
+    setCardQuestionName(state, action: PayloadAction<{ question: string }>) {
+      state.cardQuestion = action.payload.question;
+    },
+    setCardAnswerName(state, action: PayloadAction<{ question: string }>) {
+      state.cardAnswer = action.payload.question;
+    },
+    clearQuestionAnswerName(state) {
+      state.cardAnswer = '';
+      state.cardQuestion = '';
+    },
   },
   extraReducers: builder => {
     builder.addCase(setCards.fulfilled, (state, action) => {
@@ -137,5 +147,10 @@ type initialStateType = {
   sortCards: string;
 };
 
-export const { setSortCards } = slice.actions;
+export const {
+  setSortCards,
+  setCardQuestionName,
+  setCardAnswerName,
+  clearQuestionAnswerName,
+} = slice.actions;
 export const cardsSlice = slice.reducer;

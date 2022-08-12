@@ -23,13 +23,16 @@ export const PackPage = () => {
       dispatch(addPack({ name: packName, isPrivate }));
     }
   };
+
   const debouncedInput = useDebounce((text: string) => {
     dispatch(setSearchValue({ packName: text }));
   }, 500);
-  const onInputHandler = (e: any) => {
+
+  const onInputHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const text = e && e.currentTarget.value;
     debouncedInput(text);
   };
+
   return (
     <ContentWrapper>
       <h2 className={s.title}>Packs list</h2>
