@@ -75,6 +75,20 @@ export const editeCard = createAsyncThunk(
     }
   },
 );
+export const editGradeCars = createAsyncThunk(
+  'cards/editRateCard',
+  async (param: { grade: number; _id: string; cardsPack_id: string }, { dispatch }) => {
+    try {
+      dispatch(setIsLoading({ loading: true }));
+      await cardsApi.changeGrade(param.grade, param._id);
+      dispatch(setCards(param.cardsPack_id));
+    } catch (err) {
+      const error = err as AxiosError;
+    } finally {
+      dispatch(setIsLoading({ loading: false }));
+    }
+  },
+);
 
 export const deleteCard = createAsyncThunk(
   'cards/deleteCard',
