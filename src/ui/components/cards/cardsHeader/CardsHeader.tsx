@@ -16,21 +16,33 @@ export const CardsHeader = () => {
   };
   return (
     <div className={s.cardsHeader}>
-      <Button
-        variant="hidden"
-        name="Question"
-        onClick={() => changeFilterValue('question')}
-      />
-      <Button
-        variant="hidden"
-        name="Answer"
-        onClick={() => changeFilterValue('answer')}
-      />
-      <Button
-        variant="hidden"
-        name="Last Updated"
-        onClick={() => changeFilterValue('updated')}
-      />
+      <div>
+        {' '}
+        <Button
+          variant="hidden"
+          name="Question"
+          onClick={() => changeFilterValue('question')}
+        />
+      </div>
+
+      <div>
+        {' '}
+        <Button
+          variant="hidden"
+          name="Answer"
+          onClick={() => changeFilterValue('answer')}
+        />
+      </div>
+
+      <div>
+        {' '}
+        <Button
+          variant="hidden"
+          name="Last Updated"
+          onClick={() => changeFilterValue('updated')}
+        />
+      </div>
+
       <Button variant="hidden" name="Grade" onClick={() => changeFilterValue('grade')} />
     </div>
   );
