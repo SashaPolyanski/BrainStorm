@@ -27,18 +27,29 @@ export const Packs = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.header}>
-        <Button onClick={() => changeFilterValue('name')} variant="hidden" name="Name" />
-        <Button
-          onClick={() => changeFilterValue('cardsCount')}
-          variant="hidden"
-          name="Card"
-        />
-        <Button
-          onClick={() => changeFilterValue('updated')}
-          variant="hidden"
-          name="Last Updated"
-        />
-        <div>Created By</div>
+        <div className={s.nameWrapper}>
+          <Button
+            onClick={() => changeFilterValue('name')}
+            variant="hidden"
+            name="Name"
+          />
+        </div>
+        <div className={s.cardWrapper}>
+          <Button
+            onClick={() => changeFilterValue('cardsCount')}
+            variant="hidden"
+            name="Card"
+          />
+        </div>
+        <div className={s.lastUpdateWrapper}>
+          <Button
+            onClick={() => changeFilterValue('updated')}
+            variant="hidden"
+            name="Last Updated"
+          />
+        </div>
+
+        <div className={s.createByWrapper}>Created By</div>
       </div>
       <div className={s.packsContainer}>
         {cardsPack.map(pack => (
