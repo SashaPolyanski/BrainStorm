@@ -27,16 +27,18 @@ export const Pack = ({ pack }: PackPropsType) => {
   };
 
   const updatedDate = updated.slice(0, 10).split('-').reverse().join('-');
+  const updatedName = name.slice(0, 25);
+  const updateUser_name = user_name.slice(0, 15);
 
   return (
     <div>
       <div className={s.pack}>
         <NavLink to={`/cards/${_id}`} className={s.name}>
-          {name}
+          {updatedName}
         </NavLink>
         <div className={s.cardsCount}>{cardsCount}</div>
         <div className={s.updatedDate}>{updatedDate}</div>
-        <div className={s.user_name}>{user_name}</div>
+        <div className={s.user_name}>{updateUser_name}</div>
         <div className={s.btnBlock}>
           <Button variant="delete" name="Delete" onClick={deletePackHandler} />
           <Button variant="edit_learn" name="Edit" onClick={updatePackNameHandler} />
