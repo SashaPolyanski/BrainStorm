@@ -1,0 +1,18 @@
+.ratingWrapper {
+  display: flex;
+}
+.ratingContainer {
+  color: #D7D8EF;
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+    color: #21268F;
+    cursor: pointer;
+  }
+}
+.ratingActive {
+  opacity: 1;
+  color: #21268F;
+  cursor: pointer;
+}

@@ -13,7 +13,6 @@ export const setIsLoginTC = createAsyncThunk(
     try {
       dispatch(setIsLoading({ loading: true }));
       const userInfo = await auth.login(data);
-      console.log(userInfo);
       dispatch(setUserInfo({ userInfo }));
       dispatch(setIsLogin({ value: true }));
     } catch (e) {
