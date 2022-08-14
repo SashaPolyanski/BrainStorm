@@ -1,3 +1,5 @@
+import { log } from 'util';
+
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -23,6 +25,7 @@ export const setPacks = createAsyncThunk(
     try {
       dispatch(setIsLoading({ loading: true }));
       const { data } = await packApi.fetchPacks(payload);
+      dispatch(setRangeValue({ min: data.minCardsCount, max: data.maxCardsCount }));
       return data;
     } catch (err) {
       const error = err as AxiosError;
