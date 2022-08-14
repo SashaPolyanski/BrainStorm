@@ -9,3 +9,5 @@ export const selectPacks = (state: AppRootStateType) => state.packs;
 export const selectCards = (state: AppRootStateType) => state.cards;
 export const selectUserId = (state: AppRootStateType) => state.userInfo.userInfo._id;
 export const selectUser = (state: AppRootStateType) => state.userInfo.userInfo;
+export const selectMinValue = (state: AppRootStateType) => state.packs.min;
+export const selectMaxValue = (state: AppRootStateType) => state.packs.max;

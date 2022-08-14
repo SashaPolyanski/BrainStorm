@@ -12,7 +12,7 @@ const Rating = ({ grade, id, packID }: GradeType) => {
   };
   return (
     <div className={s.ratingWrapper}>
-      {[...Array(5)].map((star, index) => (
+      {[...new Array(5)].map((star, index) => (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           key={`${index.toString()} + star`}
