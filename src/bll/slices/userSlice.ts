@@ -18,12 +18,19 @@ const slice = createSlice({
   name: 'user',
   initialState: {
     userInfo: {
-      _id: '',
-      email: '',
-      name: '',
       avatar: '',
-      publicCardPacksCount: 0,
       created: '',
+      email: '',
+      isAdmin: false,
+      name: '',
+      publicCardPacksCount: 0,
+      rememberMe: false,
+      token: '',
+      tokenDeathTime: '',
+      updated: '',
+      verified: false,
+      __v: null,
+      _id: '',
     },
   } as InitialStateType,
   reducers: {
