@@ -12,3 +12,4 @@ export const selectUser = (state: AppRootStateType) => state.userInfo.userInfo;
 export const selectMinValue = (state: AppRootStateType) => state.packs.min;
 export const selectMaxValue = (state: AppRootStateType) => state.packs.max;
 export const selectLoading = (state: AppRootStateType) => state.app.loading;
+export const selectInitialized = (state: AppRootStateType) => state.app.isInitializedApp;

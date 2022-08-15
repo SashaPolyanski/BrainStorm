@@ -1,10 +1,17 @@
 export type ResponseLoginType = {
-  _id: string;
-  email: string;
-  name: string;
-  avatar?: string;
-  publicCardPacksCount: number;
+  avatar: string | undefined;
   created: string;
+  email: string;
+  isAdmin: boolean;
+  name: string;
+  publicCardPacksCount: number;
+  rememberMe: boolean;
+  token: string;
+  tokenDeathTime: string;
+  updated: string;
+  verified: boolean;
+  __v: null;
+  _id: string;
 };
 
 // Packs response type
