@@ -4,7 +4,7 @@ import axios, { AxiosError } from 'axios';
 import { cardsApi, CardType } from '../../dal/cards';
 import { AppRootStateType } from '../store';
 
-import { setIsLoading } from './appSlice';
+import { isLoading, setIsLoading } from './appSlice';
 
 export const setCards = createAsyncThunk(
   'cards/setCards',
@@ -22,13 +22,13 @@ export const setCards = createAsyncThunk(
       pageCount,
     };
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       const { data } = await cardsApi.fetchCards(payload);
       return data;
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -40,13 +40,13 @@ export const addCard = createAsyncThunk(
     { dispatch },
   ) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.addCard(param);
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -65,13 +65,13 @@ export const editeCard = createAsyncThunk(
   ) => {
     const { cardsPack_id, _id, question, answer, comments } = param;
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.editCard({ _id, question, comments });
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -79,13 +79,13 @@ export const editGradeCars = createAsyncThunk(
   'cards/editRateCard',
   async (param: { grade: number; _id: string; cardsPack_id: string }, { dispatch }) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.changeGrade(param.grade, param._id);
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -94,13 +94,13 @@ export const deleteCard = createAsyncThunk(
   'cards/deleteCard',
   async (param: { cardsPack_id: string; cardsId: string }, { dispatch }) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.deleteCard(param.cardsId);
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { selectPacks } from '../../../bll/selectors/selectors';
+import { selectLoading, selectPacks } from '../../../bll/selectors/selectors';
 import { setPacks, setSortPacks } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
@@ -14,6 +14,7 @@ import s from './Packs.module.scss';
 export const Packs = () => {
   const dispatch = useAppDispatch();
   const { cardsPack, sortPacks, min, max, packName, user_id } = useSelector(selectPacks);
+  const loading = useSelector(selectLoading);
   const [filterOrder, setFilterOrder] = useState(0);
 
   const changeFilterValue = (filterName: string) => {
@@ -27,7 +28,7 @@ export const Packs = () => {
 
   return (
     <div className={s.wrapper}>
-      <LinearPreloader />
+      {loading && <LinearPreloader />}
       <div className={s.header}>
         <div className={s.nameWrapper}>
           <Button
