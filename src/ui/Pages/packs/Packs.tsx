@@ -6,6 +6,7 @@ import { selectPacks } from '../../../bll/selectors/selectors';
 import { setPacks, setSortPacks } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
+import LinearPreloader from '../../components/linearPreloader/LinearPreloader';
 import { Pack } from '../../components/Pack/Pack';
 
 import s from './Packs.module.scss';
@@ -26,6 +27,7 @@ export const Packs = () => {
 
   return (
     <div className={s.wrapper}>
+      <LinearPreloader />
       <div className={s.header}>
         <div className={s.nameWrapper}>
           <Button
