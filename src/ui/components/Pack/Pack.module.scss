@@ -1,46 +1,37 @@
 .pack {
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr 2fr 3fr;
-  justify-items: flex-start;
-  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 20px;
-  min-width: 93vh;
+  width: 100%;
   padding-left: 40px;
   position: relative;
-  width: 75%;
   text-align: left;
   color: #000;
   line-height: 16px;
-  margin: 24px 0;
+  margin: 24px auto;
 }
 
 .btnBlock {
-  width: 250px;
+  margin-right: 40px;
+  width: 22%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-
-.deleteBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 20px;
+.name {
+  width: 30%;
 }
-
-.editBtn {
-  display: flex;
-  justify-content: center;
-  width: 50px;
-  height: 20px;
-  align-items: center;
+.cardsCount {
+  text-align: center;
+  width: 5%;
 }
-.learnBtn {
-  display: flex;
-  justify-content: center;
-  width: 50px;
-  height: 20px;
-  align-items: center;
+.updatedDate {
+  text-align: center;
+  width: 20%;
+}
+.user_name {
+  text-align: center;
+  width: 23%;
 }

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { selectLoading } from '../../../../bll/selectors/selectors';
+import { selectLoadingApp } from '../../../../bll/selectors/selectors';
 import { setNewPasswordTC } from '../../../../bll/slices/passwordSlice';
 import { useAppDispatch } from '../../../../bll/store';
 import Button from '../../../components/button/Button';
@@ -24,7 +24,7 @@ export type FormData = {
 const PasswordRecovery = () => {
   const dispatch = useAppDispatch();
   const { token } = useParams<{ token: string }>();
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectLoadingApp);
   const formSchema = Yup.object().shape({
     password: Yup.string()
       .required('password is required')

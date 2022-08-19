@@ -13,7 +13,6 @@ export const setIsLoginTC = createAsyncThunk(
     try {
       dispatch(setIsLoading({ loading: true }));
       const userInfo = await auth.login(data);
-      console.log(userInfo);
       dispatch(setUserInfo({ userInfo }));
       dispatch(setIsLogin({ value: true }));
     } catch (e) {
@@ -42,6 +41,7 @@ const slice = createSlice({
   initialState: {
     isLogin: false,
     error: '',
+    userId: '',
   } as InitialStateType,
   reducers: {
     setError(state, action: PayloadAction<{ error: string }>) {
@@ -50,6 +50,9 @@ const slice = createSlice({
     setIsLogin(state, action: PayloadAction<{ value: boolean }>) {
       state.isLogin = action.payload.value;
     },
+    setUserId(state, action: PayloadAction<{ id: string }>) {
+      state.userId = action.payload.id;
+    },
   },
   extraReducers: builder => {},
 });
@@ -57,6 +60,7 @@ const slice = createSlice({
 type InitialStateType = {
   isLogin: boolean;
   error: string;
+  userId: string;
 };
 export const authSlice = slice.reducer;
-export const { setError, setIsLogin } = slice.actions;
+export const { setError, setIsLogin, setUserId } = slice.actions;

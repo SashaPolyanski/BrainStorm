@@ -7,7 +7,11 @@ import { Navigate, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import App from '../../../App';
-import { authError, selectIsAuth, selectLoading } from '../../../bll/selectors/selectors';
+import {
+  authError,
+  selectIsAuth,
+  selectLoadingApp,
+} from '../../../bll/selectors/selectors';
 import { setIsLoginTC } from '../../../bll/slices/authSlice';
 import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
@@ -27,7 +31,7 @@ export interface IFormInputs {
 
 const Login = () => {
   const isAuth = useSelector(selectIsAuth);
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectLoadingApp);
   const dispatch = useAppDispatch();
   const error = useSelector((state: AppRootStateType) => state.auth.error);
 

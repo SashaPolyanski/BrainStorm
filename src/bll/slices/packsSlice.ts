@@ -1,10 +1,12 @@
+import { log } from 'util';
+
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { GetPacksParamsType, packApi, PacksType } from '../../dal/packs';
 import { AppRootStateType } from '../store';
 
-import { setIsLoading } from './appSlice';
+import { isLoading, setIsLoading } from './appSlice';
 
 export const setPacks = createAsyncThunk(
   'packs/setPacks',
@@ -21,13 +23,14 @@ export const setPacks = createAsyncThunk(
       user_id,
     };
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       const { data } = await packApi.fetchPacks(payload);
+      dispatch(setRangeValue({ min: data.minCardsCount, max: data.maxCardsCount }));
       return data;
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -36,13 +39,13 @@ export const addPack = createAsyncThunk(
   'packs/addPack',
   async (param: { name: string; isPrivate?: boolean }, { dispatch }) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await packApi.addNewPack(param);
       dispatch(setPacks());
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -51,13 +54,13 @@ export const updatePackName = createAsyncThunk(
   'packs/updatePackName',
   async (param: { _id: string; name: string }, { dispatch }) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await packApi.updatePack(param);
       dispatch(setPacks());
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -66,12 +69,13 @@ export const deletePack = createAsyncThunk(
   'packs/deletePack',
   async (id: string, { dispatch }) => {
     try {
+      dispatch(isLoading({ loading: true }));
       await packApi.deletePack(id);
       dispatch(setPacks());
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );

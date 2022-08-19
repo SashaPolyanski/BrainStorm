@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { selectIsSend, selectLoading } from '../../../../bll/selectors/selectors';
+import { selectIsSend, selectLoadingApp } from '../../../../bll/selectors/selectors';
 import { sendEmailTC } from '../../../../bll/slices/passwordSlice';
 import { useAppDispatch } from '../../../../bll/store';
 import { PATH } from '../../../../common/constants/constants';
@@ -25,7 +25,7 @@ type FormDataType = {
 const ForgotPassword = () => {
   const dispatch = useAppDispatch();
   const isSend = useSelector(selectIsSend);
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectLoadingApp);
 
   const formSchema = Yup.object().shape({
     email: Yup.string()

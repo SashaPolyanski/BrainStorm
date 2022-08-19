@@ -10,6 +10,7 @@ import s from './doubleRangeInput.module.scss';
 const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState<number>(min);
   const [maxVal, setMaxVal] = useState<number>(max);
+  console.log(min, max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<any>(null);
@@ -78,7 +79,7 @@ const DoubleRangeInput: React.FC<DoubleRangeInputType> = ({ min, max, onChange }
           minValRef.current = value;
         }}
         className={`${s.thumb} ${s.thumbLeft}`}
-        style={{ zIndex: minVal > max - 100 ? '5' : '' }}
+        style={{ zIndex: minVal > max - max ? '5' : '' }}
       />
       <input
         type="range"

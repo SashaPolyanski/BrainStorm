@@ -15,6 +15,9 @@ export const cardsApi = {
   deleteCard(cardId: string) {
     return instance.delete(Url.CARDS_URL, { params: { cardId } });
   },
+  changeGrade(grade: number, card_id: string) {
+    return instance.put(Url.GRADE, { grade, card_id });
+  },
 };
 
 export type FetchCardsParamType = {
