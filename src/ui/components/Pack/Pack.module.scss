@@ -5,7 +5,7 @@
   font-size: 20px;
   width: 100%;
   padding-left: 40px;
-  position: relative;
+  //position: relative;
   text-align: left;
   color: #000;
   line-height: 16px;
@@ -34,4 +34,11 @@
 .user_name {
   text-align: center;
   width: 23%;
+}
+
+.packEditForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3em;
 }
