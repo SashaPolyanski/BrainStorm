@@ -7,6 +7,7 @@ import { setPacks, setSortPacks } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import Button from '../../components/button/Button';
 import LinearPreloader from '../../components/linearPreloader/LinearPreloader';
+import Modal from '../../components/modal/Modal';
 import { Pack } from '../../components/Pack/Pack';
 
 import s from './Packs.module.scss';

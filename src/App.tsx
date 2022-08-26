@@ -27,9 +27,9 @@ const App = () => {
     dispatch(initializeApp());
   }, []);
 
-  if (!initialized) {
-    return <Preloader />;
-  }
+  // if (!initialized) {
+  //   return <Preloader />;
+  // }
 
   return (
     <>
