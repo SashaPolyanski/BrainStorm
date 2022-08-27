@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import AddPackModal from '../../components/modals/modalContent/addPackModal/AddPackModal';
 import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
 
 import s from './PackPage.module.scss';
@@ -14,8 +15,8 @@ export const PackPage = () => {
   const dispatch = useAppDispatch();
   const [isPrivate, setIsPrivate] = useState(false);
 
-  const addPackHandler = () => {
-    const packName = prompt('Enter new pack name', ''); // eslint-disable-line no-alert
+  const addPackHandler = (packName: string) => {
+    // const packName = prompt('Enter new pack name', ''); // eslint-disable-line no-alert
     if (packName) {
       dispatch(addPack({ name: packName, isPrivate }));
     }
@@ -70,8 +71,8 @@ export const PackPage = () => {
           type="text"
           onInput={onInputHandler}
         />
-
-        <Button variant="auth" name="AddPack" onClick={addPackHandler} />
+        <AddPackModal addPackHandler={addPackHandler} />
+        {/* <Button variant="auth" name="AddPack" onClick={addPackHandler} /> */}
       </div>
       <Packs />
     </ContentWrapper>
