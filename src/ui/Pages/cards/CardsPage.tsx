@@ -48,8 +48,8 @@ export const CardsPage = () => {
   }, 500);
 
   const onInputHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    const text = e && e.currentTarget.value;
-    debouncedInput(text);
+    const inputText = e && e.currentTarget.value;
+    debouncedInput(inputText);
   };
 
   return (
