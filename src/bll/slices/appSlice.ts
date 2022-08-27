@@ -23,6 +23,7 @@ export const initializeApp = createAsyncThunk(
 const slice = createSlice({
   name: 'app',
   initialState: {
+    modal: false,
     isLoading: false,
     isInitializedApp: false,
     loading: false,
@@ -33,6 +34,9 @@ const slice = createSlice({
     },
     isLoading(state, action: PayloadAction<{ loading: boolean }>) {
       state.loading = action.payload.loading;
+    },
+    toggleModal(state, action: PayloadAction<{ isOpen: boolean }>) {
+      state.modal = action.payload.isOpen;
     },
   },
   extraReducers: builder => {
@@ -45,9 +49,10 @@ const slice = createSlice({
 });
 
 type InitialStateType = {
+  modal: boolean;
   isLoading: boolean;
   loading: boolean;
   isInitializedApp: boolean;
 };
 export const appSlice = slice.reducer;
-export const { setIsLoading, isLoading } = slice.actions;
+export const { setIsLoading, isLoading, toggleModal } = slice.actions;
