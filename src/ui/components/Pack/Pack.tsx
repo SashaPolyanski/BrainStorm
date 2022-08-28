@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -7,8 +7,8 @@ import { useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import { PacksType } from '../../../dal/packs';
 import Button from '../button/Button';
+import DeletePackModal from '../modals/modalContent/deletePackModal/DeletePackModal';
 import EditPackModal from '../modals/modalContent/editPackModal/EditPackModal';
-import LearnPackModal from '../modals/modalContent/learnPackModal/LearnPackModal';
 
 import s from './Pack.module.scss';
 
@@ -46,7 +46,7 @@ export const Pack = ({ pack, user_id }: PackPropsType) => {
         <div className={s.user_name}>{updateUser_name}</div>
         <div className={s.btnBlock}>
           {user_id && (
-            <Button variant="delete" name="Delete" onClick={deletePackHandler} />
+            <DeletePackModal deletePackHandler={deletePackHandler} name={name} />
           )}
           {user_id && (
             <EditPackModal updatePackNameHandler={updatePackNameHandler} name={name} />

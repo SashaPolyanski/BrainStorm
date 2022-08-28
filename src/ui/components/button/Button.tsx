@@ -19,6 +19,7 @@ type ButtonPropsType = DefaultButtonPropsType & {
     | 'pagination'
     | 'hidden'
     | 'pack_list'
+    | 'delete_in_modal'
     | 'active_btn';
 };
 
@@ -64,6 +65,9 @@ const Button: React.FC<ButtonPropsType> = ({
       break;
     case 'active_btn':
       finalClassName = `${s.activeBtn} ${finalClassName}`;
+      break;
+    case 'delete_in_modal':
+      finalClassName = `${s.deleteInModal} ${finalClassName}`;
       break;
   }
   return (

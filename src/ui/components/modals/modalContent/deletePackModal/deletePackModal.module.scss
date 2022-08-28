@@ -1,0 +1,30 @@
+.deletePackWrapper {
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.deletePackTitle {
+
+}
+
+.deletePackBody {
+  padding: 10px;
+  line-height: 1.2em;
+}
+
+.packEditForm {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.deletePackButtonGroup {
+  display: flex;
+  gap: 1em;
+
+}
