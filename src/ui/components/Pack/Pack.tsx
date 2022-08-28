@@ -12,7 +12,7 @@ import LearnPackModal from '../modals/modalContent/learnPackModal/LearnPackModal
 
 import s from './Pack.module.scss';
 
-export const Pack = ({ pack }: PackPropsType) => {
+export const Pack = ({ pack, user_id }: PackPropsType) => {
   const { name, updated, cardsCount, user_name, _id } = pack;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -45,9 +45,12 @@ export const Pack = ({ pack }: PackPropsType) => {
         <div className={s.updatedDate}>{updatedDate}</div>
         <div className={s.user_name}>{updateUser_name}</div>
         <div className={s.btnBlock}>
-          <Button variant="delete" name="Delete" onClick={deletePackHandler} />
-          <EditPackModal updatePackNameHandler={updatePackNameHandler} name={name} />
-          {/* <Button variant="edit_learn" name="Learn" onClick={redirectToLearnCard} /> */}
+          {user_id && (
+            <Button variant="delete" name="Delete" onClick={deletePackHandler} />
+          )}
+          {user_id && (
+            <EditPackModal updatePackNameHandler={updatePackNameHandler} name={name} />
+          )}
           {/* <LearnPackModal redirectToLearnCard={redirectToLearnCard} _id={_id} /> */}
         </div>
       </div>
@@ -57,4 +60,5 @@ export const Pack = ({ pack }: PackPropsType) => {
 
 export type PackPropsType = {
   pack: PacksType;
+  user_id: string;
 };

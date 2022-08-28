@@ -86,7 +86,6 @@ export const PackPage = () => {
           onInput={onInputHandler}
         />
         <AddPackModal addPackHandler={addPackHandler} />
-        {/* <Button variant="auth" name="AddPack" onClick={addPackHandler} /> */}
       </div>
       <Packs />
       <div>

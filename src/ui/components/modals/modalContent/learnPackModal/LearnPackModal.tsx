@@ -59,7 +59,7 @@ const LearnPackModal: React.FC<EditPacksModalPropsType> = ({
       },
       { sum: 0, id: -1 },
     );
-    console.log('test: ', sum, rand, res);
+    // console.log('test: ', sum, rand, res);
 
     return cards[res.id + 1];
   };
@@ -76,12 +76,12 @@ const LearnPackModal: React.FC<EditPacksModalPropsType> = ({
 
   useEffect(() => {
     if (cards.length > 0) setCard(getCard(cards));
-    console.log(cards);
+    // console.log(cards);
   }, [cards]);
 
   const onNextClick = () => {
     setIsVisible(false);
-    console.log(cards);
+    // console.log(cards);
     if (cards.length > 0) setCard(getCard(cards));
   };
 

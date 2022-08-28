@@ -25,6 +25,7 @@ import { Cards } from '../../components/cards/Cards';
 import { Input } from '../../components/input/Input';
 import LinearPreloader from '../../components/linearPreloader/LinearPreloader';
 import Pagination from '../../components/Pagination/Pagination';
+import AddCardModal from '../../components/modals/modalContent/addCardModal/AddCardModal';
 import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
 
 import s from './CardsPage.module.scss';
@@ -103,7 +104,8 @@ export const CardsPage = () => {
           placeholder="Search"
           onInput={onInputHandler}
         />
-        <Button variant="auth" name="AddCard" onClick={addCardHandler} />
+        {/* <Button variant="auth" name="AddCard" onClick={addCardHandler} /> */}
+        <AddCardModal addCardHandler={addCardHandler} />
       </div>
       <Cards packId={id} />
       <Pagination
