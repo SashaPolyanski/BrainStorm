@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
 import { cardsApi, CardType } from '../../dal/cards';
 import { AppRootStateType } from '../store';
 
-import { setIsLoading } from './appSlice';
+import { isLoading, setIsLoading } from './appSlice';
 
 export const setCards = createAsyncThunk(
   'cards/setCards',
@@ -22,13 +22,13 @@ export const setCards = createAsyncThunk(
       pageCount,
     };
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       const { data } = await cardsApi.fetchCards(payload);
       return data;
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -40,13 +40,13 @@ export const addCard = createAsyncThunk(
     { dispatch },
   ) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.addCard(param);
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -65,13 +65,27 @@ export const editeCard = createAsyncThunk(
   ) => {
     const { cardsPack_id, _id, question, answer, comments } = param;
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.editCard({ _id, question, comments });
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
+    }
+  },
+);
+export const editGradeCars = createAsyncThunk(
+  'cards/editRateCard',
+  async (param: { grade: number; _id: string; cardsPack_id: string }, { dispatch }) => {
+    try {
+      dispatch(isLoading({ loading: true }));
+      await cardsApi.changeGrade(param.grade, param._id);
+      dispatch(setCards(param.cardsPack_id));
+    } catch (err) {
+      const error = err as AxiosError;
+    } finally {
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -80,13 +94,13 @@ export const deleteCard = createAsyncThunk(
   'cards/deleteCard',
   async (param: { cardsPack_id: string; cardsId: string }, { dispatch }) => {
     try {
-      dispatch(setIsLoading({ loading: true }));
+      dispatch(isLoading({ loading: true }));
       await cardsApi.deleteCard(param.cardsId);
       dispatch(setCards(param.cardsPack_id));
     } catch (err) {
       const error = err as AxiosError;
     } finally {
-      dispatch(setIsLoading({ loading: false }));
+      dispatch(isLoading({ loading: false }));
     }
   },
 );
@@ -106,7 +120,24 @@ export const slice = createSlice({
     packId: '',
     sortCards: '0updated',
   } as initialStateType,
-  reducers: {},
+  reducers: {
+    setSortCards(
+      state,
+      action: PayloadAction<{ filterOrder: number; filterName: string }>,
+    ) {
+      state.sortCards = `${action.payload.filterOrder}${action.payload.filterName}`;
+    },
+    setCardQuestionName(state, action: PayloadAction<{ question: string }>) {
+      state.cardQuestion = action.payload.question;
+    },
+    setCardAnswerName(state, action: PayloadAction<{ question: string }>) {
+      state.cardAnswer = action.payload.question;
+    },
+    clearQuestionAnswerName(state) {
+      state.cardAnswer = '';
+      state.cardQuestion = '';
+    },
+  },
   extraReducers: builder => {
     builder.addCase(setCards.fulfilled, (state, action) => {
       if (action.payload) {
@@ -130,4 +161,10 @@ type initialStateType = {
   sortCards: string;
 };
 
+export const {
+  setSortCards,
+  setCardQuestionName,
+  setCardAnswerName,
+  clearQuestionAnswerName,
+} = slice.actions;
 export const cardsSlice = slice.reducer;

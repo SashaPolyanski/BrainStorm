@@ -9,6 +9,7 @@ export enum Url {
   CARDS_URL = '/cards/card',
   FORGOT = 'auth/forgot',
   SET_NEW_PASSWORD = 'auth/set-new-password',
+  GRADE = '/cards/grade',
 }
 export enum PATH {
   LOGIN = '/',
@@ -20,5 +21,6 @@ export enum PATH {
   NOT_FOUND = '/404',
   EDIT_PROFILE = '/edit-profile',
   PACKS = '/packs',
-  CARDS = '/cards',
+  CARDS = '/cards/:id',
+  LEARN = '/learn',
 }

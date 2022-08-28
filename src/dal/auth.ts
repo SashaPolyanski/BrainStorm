@@ -16,9 +16,6 @@ export const auth = {
   register(email: string, password: string) {
     return instance.post(Url.REGISTER, { email, password });
   },
-  updateMe(name?: string, avatar?: string) {
-    return instance.put<ResponseLoginType>(Url.UPDATE_ME, { name, avatar });
-  },
   sendEmail(email: string) {
     return instance.post(Url.FORGOT, {
       email,

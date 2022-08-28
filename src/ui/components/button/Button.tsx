@@ -12,8 +12,8 @@ type ButtonPropsType = DefaultButtonPropsType & {
   variant:
     | 'auth'
     | 'cancel_auth'
-    | 'show_my_pack'
-    | 'show_all_pack'
+    | 'show_certain_packs'
+    | 'show_certain_packs_active'
     | 'delete'
     | 'edit_learn'
     | 'pagination'
@@ -37,11 +37,15 @@ const Button: React.FC<ButtonPropsType> = ({
     case 'cancel_auth':
       finalClassName = `${s.cancel_auth} ${finalClassName}`;
       break;
-    case 'show_my_pack':
-      finalClassName = `${s.show_my_pack} ${finalClassName}`;
+    case 'show_certain_packs':
+      finalClassName = `${s.show_certain_packs} ${
+        name === 'My' ? s.leftRounded : s.rightRounded
+      } ${finalClassName}`;
       break;
-    case 'show_all_pack':
-      finalClassName = `${s.show_all_pack} ${finalClassName}`;
+    case 'show_certain_packs_active':
+      finalClassName = `${s.show_certain_packs_active} ${
+        name === 'My' ? s.leftRounded : s.rightRounded
+      } ${finalClassName}`;
       break;
     case 'delete':
       finalClassName = `${s.delete} ${finalClassName}`;
