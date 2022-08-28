@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
 import s from './Pagination.module.scss';
 
-// type PaginationType = {
-//   totalCount: number
-//   pageSize: number
-//   currentPage: number
-//   onChangedPage: (n: number) => void
-// };
+type PaginationType = {
+  totalCount: number;
+  pageSize: number;
+  onChangePageHandler: (page: number) => void;
+};
 
-const Pagination = () => {
-  const [totalCount, setTotalCount] = useState(50);
-  const [packsPerPage] = useState(10);
-  const [pageNumber, setPageNumber] = useState(0);
-  const pageCount = Math.ceil(totalCount / packsPerPage);
-  // const changePage = ({ packsPerPage }) => {
-  //   setPageNumber(packsPerPage);
-  // };
+const Pagination = ({ totalCount, pageSize, onChangePageHandler }: PaginationType) => {
+  const pageCount = Math.ceil(totalCount / pageSize);
+
   return (
     <div>
       <ReactPaginate
@@ -27,11 +21,8 @@ const Pagination = () => {
         nextLabel=">>"
         breakLabel="..."
         pageCount={pageCount}
-
-        // onPageChange={e => onChangePage(e.selected + 1)}
-        // pageRangeDisplayed={4}
-        // forcePage={currentPage - 1}
-        // renderOnZeroPageCount={() => (null)}
+        onPageChange={e => onChangePageHandler(e.selected + 1)}
+        pageRangeDisplayed={5}
       />
     </div>
   );

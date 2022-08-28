@@ -12,14 +12,13 @@ import { CardsHeader } from './cardsHeader/CardsHeader';
 
 export const Cards = ({ packId }: CardsPropsType) => {
   const dispatch = useAppDispatch();
-
-  const { cards, sortCards, cardQuestion } = useSelector(selectCards);
+  const { cards, sortCards, cardQuestion, page } = useSelector(selectCards);
 
   useEffect(() => {
     if (packId) {
       dispatch(setCards(packId));
     }
-  }, [sortCards, cardQuestion]);
+  }, [sortCards, cardQuestion, page]);
 
   return (
     <div className={s.wrapper}>

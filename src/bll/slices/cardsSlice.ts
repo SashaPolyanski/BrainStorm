@@ -5,6 +5,7 @@ import { cardsApi, CardType } from '../../dal/cards';
 import { AppRootStateType } from '../store';
 
 import { isLoading, setIsLoading } from './appSlice';
+import { setTotalCount } from './packsSlice';
 
 export const setCards = createAsyncThunk(
   'cards/setCards',
@@ -24,6 +25,7 @@ export const setCards = createAsyncThunk(
     try {
       dispatch(isLoading({ loading: true }));
       const { data } = await cardsApi.fetchCards(payload);
+      dispatch(setTotalCount({ count: data.cardsTotalCount }));
       return data;
     } catch (err) {
       const error = err as AxiosError;
@@ -133,6 +135,9 @@ export const slice = createSlice({
     setCardAnswerName(state, action: PayloadAction<{ question: string }>) {
       state.cardAnswer = action.payload.question;
     },
+    setCardsPage(state, action: PayloadAction<{ page: number }>) {
+      state.page = action.payload.page;
+    },
     clearQuestionAnswerName(state) {
       state.cardAnswer = '';
       state.cardQuestion = '';
@@ -166,5 +171,6 @@ export const {
   setCardQuestionName,
   setCardAnswerName,
   clearQuestionAnswerName,
+  setCardsPage,
 } = slice.actions;
 export const cardsSlice = slice.reducer;

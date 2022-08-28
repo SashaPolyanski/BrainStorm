@@ -14,8 +14,9 @@ import s from './Packs.module.scss';
 
 export const Packs = () => {
   const dispatch = useAppDispatch();
-  const { cardsPack, sortPacks, min, max, packName, user_id } = useSelector(selectPacks);
   const loading = useSelector(selectLoading);
+  const { cardsPack, sortPacks, min, max, packName, page, user_id } =
+    useSelector(selectPacks);
   const [filterOrder, setFilterOrder] = useState(0);
 
   const changeFilterValue = (filterName: string) => {
@@ -25,7 +26,7 @@ export const Packs = () => {
 
   useEffect(() => {
     dispatch(setPacks());
-  }, [sortPacks, min, max, packName, user_id]);
+  }, [sortPacks, min, max, packName, user_id, page]);
 
   return (
     <div className={s.wrapper}>

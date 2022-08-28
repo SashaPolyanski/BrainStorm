@@ -48,7 +48,7 @@ export const Pack = ({ pack }: PackPropsType) => {
           <Button variant="delete" name="Delete" onClick={deletePackHandler} />
           <EditPackModal updatePackNameHandler={updatePackNameHandler} name={name} />
           {/* <Button variant="edit_learn" name="Learn" onClick={redirectToLearnCard} /> */}
-          <LearnPackModal redirectToLearnCard={redirectToLearnCard} _id={_id} />
+          {/* <LearnPackModal redirectToLearnCard={redirectToLearnCard} _id={_id} /> */}
         </div>
       </div>
     </div>
