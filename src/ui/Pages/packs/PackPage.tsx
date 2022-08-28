@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { addPack, setSearchValue } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
-import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
 import AddPackModal from '../../components/modals/modalContent/addPackModal/AddPackModal';
 import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';

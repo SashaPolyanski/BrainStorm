@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { deletePack, updatePackName } from '../../../bll/slices/packsSlice';
 import { useAppDispatch } from '../../../bll/store';
+import { PATH } from '../../../common/constants/constants';
 import { PacksType } from '../../../dal/packs';
 import Button from '../button/Button';
 import EditPackModal from '../modals/modalContent/editPackModal/EditPackModal';
@@ -14,6 +15,7 @@ import s from './Pack.module.scss';
 export const Pack = ({ pack }: PackPropsType) => {
   const { name, updated, cardsCount, user_name, _id } = pack;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const deletePackHandler = () => {
     dispatch(deletePack(_id));
@@ -29,6 +31,10 @@ export const Pack = ({ pack }: PackPropsType) => {
   const updatedName = name.slice(0, 25);
   const updateUser_name = user_name.slice(0, 15);
 
+  const redirectToLearnCard = () => {
+    navigate(`${PATH.LEARN}/${_id}`);
+  };
+
   return (
     <div>
       <div className={s.pack}>
@@ -41,7 +47,8 @@ export const Pack = ({ pack }: PackPropsType) => {
         <div className={s.btnBlock}>
           <Button variant="delete" name="Delete" onClick={deletePackHandler} />
           <EditPackModal updatePackNameHandler={updatePackNameHandler} name={name} />
-          <LearnPackModal />
+          {/* <Button variant="edit_learn" name="Learn" onClick={redirectToLearnCard} /> */}
+          <LearnPackModal redirectToLearnCard={redirectToLearnCard} _id={_id} />
         </div>
       </div>
     </div>

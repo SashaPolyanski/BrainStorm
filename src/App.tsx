@@ -7,6 +7,7 @@ import { selectInitialized } from './bll/selectors/selectors';
 import { initializeApp } from './bll/slices/appSlice';
 import { useAppDispatch } from './bll/store';
 import { PATH } from './common/constants/constants';
+import LearnPackModal from './ui/components/modals/modalContent/learnPackModal/LearnPackModal';
 import NavigationBar from './ui/components/navigation/NavigationBar';
 import Preloader from './ui/components/preloader/Preloader';
 import { CardsPage } from './ui/Pages/cards/CardsPage';
