@@ -22,4 +22,5 @@ export enum PATH {
   EDIT_PROFILE = '/edit-profile',
   PACKS = '/packs',
   CARDS = '/cards/:id',
+  LEARN = '/learn',
 }
