@@ -26,6 +26,7 @@ const AddCardModal: React.FC<EditPacksModalPropsType> = ({ addCardHandler }) => 
         isOpen={active}
         actionButton={<Button variant="auth" name="AddCard" onClick={openModal} />}
       >
+        {/*  ----- Body Modal -----*/}
         <div className={s.packEditForm}>
           <Input
             type="text"
@@ -35,6 +36,7 @@ const AddCardModal: React.FC<EditPacksModalPropsType> = ({ addCardHandler }) => 
           />
           <Button variant="auth" name="Send" onClick={handelEditPack} />
         </div>
+        {/*  ----- End Body Modal -----*/}
       </Modal>
     </div>
   );
