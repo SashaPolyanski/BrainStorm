@@ -104,7 +104,6 @@ const Login = () => {
           </NavLink>
         </div>
       </div>
-      <Pagination />
       {error && <SnackBar>{error}</SnackBar>}
     </AuthWrapper>
   );

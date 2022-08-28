@@ -13,3 +13,6 @@ export const selectMinValue = (state: AppRootStateType) => state.packs.min;
 export const selectMaxValue = (state: AppRootStateType) => state.packs.max;
 export const selectLoading = (state: AppRootStateType) => state.app.loading;
 export const selectInitialized = (state: AppRootStateType) => state.app.isInitializedApp;
+export const selectPageCount = (state: AppRootStateType) =>
+  state.packs.cardPacksTotalCount;
+export const selectPageSize = (state: AppRootStateType) => state.packs.pageCount;

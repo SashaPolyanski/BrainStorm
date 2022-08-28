@@ -25,6 +25,7 @@ export const setPacks = createAsyncThunk(
     try {
       dispatch(isLoading({ loading: true }));
       const { data } = await packApi.fetchPacks(payload);
+      dispatch(setTotalCount({ count: data.cardPacksTotalCount }));
       dispatch(setRangeValue({ min: data.minCardsCount, max: data.maxCardsCount }));
       return data;
     } catch (err) {
@@ -85,10 +86,11 @@ const slice = createSlice({
   initialState: {
     cardsPack: [],
     packName: '',
+    cardPacksTotalCount: 0,
     min: 0,
     max: 0,
     sortPacks: '0updated',
-    page: 0,
+    page: 1,
     pageCount: 5,
     user_id: '',
   } as InitialStateType,
@@ -106,6 +108,12 @@ const slice = createSlice({
     setSearchValue(state, action: PayloadAction<{ packName: string }>) {
       state.packName = action.payload.packName;
     },
+    setPage(state, action: PayloadAction<{ page: number }>) {
+      state.page = action.payload.page;
+    },
+    setTotalCount(state, action: PayloadAction<{ count: number }>) {
+      state.cardPacksTotalCount = action.payload.count;
+    },
     showCertainPacks(state, action: PayloadAction<{ id: string }>) {
       state.user_id = action.payload.id;
     },
@@ -119,8 +127,14 @@ const slice = createSlice({
   },
 });
 
-export const { setSortPacks, setRangeValue, setSearchValue, showCertainPacks } =
-  slice.actions;
+export const {
+  setSortPacks,
+  setRangeValue,
+  setSearchValue,
+  showCertainPacks,
+  setTotalCount,
+  setPage,
+} = slice.actions;
 export const packsSlice = slice.reducer;
 
 type InitialStateType = GetPacksParamsType & {
