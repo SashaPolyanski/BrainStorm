@@ -58,7 +58,7 @@ export const Packs = () => {
       </div>
       <div className={s.packsContainer}>
         {cardsPack.map(pack => (
-          <Pack key={pack._id} pack={pack} />
+          <Pack key={pack._id} pack={pack} user_id={user_id} />
         ))}
       </div>
     </div>

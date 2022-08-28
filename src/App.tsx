@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeApp());
-  }, []);
+  }, [initialized]);
 
   // if (!initialized) {
   //   return <Preloader />;
