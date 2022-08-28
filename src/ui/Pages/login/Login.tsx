@@ -17,6 +17,7 @@ import { AppRootStateType, useAppDispatch } from '../../../bll/store';
 import { PATH } from '../../../common/constants/constants';
 import Button from '../../components/button/Button';
 import { Input } from '../../components/input/Input';
+import Pagination from '../../components/Pagination/Pagination';
 import Preloader from '../../components/preloader/Preloader';
 import SnackBar from '../../components/snackBar/snackBar';
 import { Title } from '../../components/title/Title';
@@ -103,6 +104,7 @@ const Login = () => {
           </NavLink>
         </div>
       </div>
+      <Pagination />
       {error && <SnackBar>{error}</SnackBar>}
     </AuthWrapper>
   );
