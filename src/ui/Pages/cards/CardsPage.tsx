@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { Magnifier } from '../../../assets/svg/Magnifier';
 import {
-  selectCards,
   selectPacks,
   selectPageCount,
   selectPageSize,
-  selectUser,
 } from '../../../bll/selectors/selectors';
 import {
   addCard,
   clearQuestionAnswerName,
   setCardQuestionName,
-  setCards,
   setCardsPage,
 } from '../../../bll/slices/cardsSlice';
-import { setPage, setSearchValue } from '../../../bll/slices/packsSlice';
-import { AppRootStateType, useAppDispatch } from '../../../bll/store';
+import { useAppDispatch } from '../../../bll/store';
 import { useDebounce } from '../../../bll/utils/useDebounce';
-import Button from '../../components/button/Button';
 import { Cards } from '../../components/cards/Cards';
 import { Input } from '../../components/input/Input';
-import LinearPreloader from '../../components/linearPreloader/LinearPreloader';
 import AddCardModal from '../../components/modals/modalContent/addCardModal/AddCardModal';
 import Pagination from '../../components/Pagination/Pagination';
 import { ContentWrapper } from '../../styles/contentWrapper/ContentWrapper';
@@ -57,13 +51,13 @@ export const CardsPage = () => {
     }
   };
 
-  const debouncedInput = useDebounce((text: string) => {
+  const debouncedInputTest = useDebounce((text: string) => {
     dispatch(setCardQuestionName({ question: text }));
   }, 500);
 
   const onInputHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const inputText = e && e.currentTarget.value;
-    debouncedInput(inputText);
+    debouncedInputTest(inputText);
   };
 
   return (
